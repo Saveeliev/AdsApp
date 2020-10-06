@@ -1,0 +1,94 @@
+﻿@using AdsApp.Models.ViewModels
+@{
+    ViewData["Title"] = "Home Page";
+}
+@model List<AdDto>
+
+<center>
+    <div class="header">
+
+        <div>
+
+            <a class="addAdvertisement" href="#addAdvertisement" id="addAdvertisementButton">Add advertisement</a>
+
+        </div>
+
+        <form class="logOutForm" method="post" asp-controller="Login" asp-action="Logout">
+
+            <input class="enter" type="submit" value="Log out" />
+
+        </form>
+
+    </div>
+
+    <div id="addAdvertisementWindow">
+
+        <div class="addAdvertisementWindow">
+
+            <div class="buttontoCloseContainer">
+
+                <a href="#" id="buttonToClose"><img src="~/wwwroot/close.png" /></a>
+
+            </div>
+
+            <div class="addAdvertisementForm">
+
+                <form method="post" action="~/Ad/AddAdvertisement">
+
+                    <textarea name="text"></textarea>
+                    <input type="submit" class="addAdvertisementButton" value="Enter" />
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</center>
+
+<div class="mainContainer">
+
+    <div class="userInterfaceContainer">
+
+        @foreach (var ad in Model)
+        {
+            <div class="ad">
+                <div class="imgContainer">
+
+                </div>
+                <div class="titleContainer">
+                    @ad.Text
+                </div>
+                <div class="userNameContainer">
+                    @ad.UserName
+                </div>
+                <div class="dataContainer">
+                    @ad.CreatedDate
+                </div>
+                <div class="ratingContainer">
+                    
+                </div>
+            </div>
+        }
+
+    </div>
+
+</div>
+
+<script>
+
+    var addAdvertisementWindow = document.getElementById("addAdvertisementWindow");
+    var addAdvertisementButton = document.getElementById("addAdvertisementButton");
+    var buttonToClose = document.getElementById("buttonToClose");
+
+    addAdvertisementButton.onclick = function () {
+        addAdvertisementWindow.style.display = "block";
+    }
+
+    buttonToClose.onclick = function () {
+        addAdvertisementWindow.style.display = "none";
+    }
+
+</script>
