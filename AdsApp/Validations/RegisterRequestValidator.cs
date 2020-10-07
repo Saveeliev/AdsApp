@@ -7,7 +7,7 @@ namespace AdsApp.Validations
     {
         public RegisterRequestValidator()
         {
-            RuleFor(i => i.Login)
+            RuleFor(i => i.Login).EmailAddress()
                 .NotNull().WithMessage("Login cannot be empty")
                 .Length(4, 10).WithMessage("Login length must be between 4 and 10")
                 .Matches(@"^\w+$").WithMessage("Login can contain only letters");
@@ -20,7 +20,7 @@ namespace AdsApp.Validations
             RuleFor(i => i.Password)
                 .NotNull().WithMessage("Password cannot be empty")
                 .Length(6, 10).WithMessage("Password length must be between 6 and 10")
-                .Matches(@"^\w+$").WithMessage("Password can contain only letters");
+                .Matches(@"[a-zA-Z0-9]{6,32}").WithMessage("Password can contain only letters");
 
             RuleFor(i => i.ConfirmPassword)
                 .NotNull().WithMessage("Confirm password cannot be empty")

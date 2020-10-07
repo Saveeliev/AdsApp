@@ -21,6 +21,11 @@ namespace AdsApp.Controllers
             return View();
         }
 
+        public IActionResult AddAdvertisement()
+        {
+            return View();
+        }
+
         [HttpPost]
         public async Task<string> AddAdvertisement(string text)
         {

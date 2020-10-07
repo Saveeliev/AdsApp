@@ -7,6 +7,6 @@ namespace AdsApp.Services
     public interface IUserService
     {
         Task Register(RegisterRequest request);
-        bool IsUserExist(LoginRequest request);
+        bool IsCorrectPassword(LoginRequest request);
     }
 }

@@ -21,9 +21,9 @@ namespace AdsApp
             await _dataProvider.Insert(new UserDb { Login = request.Login.ToLower(), Name = request.Name, Password = request.Password });
         }
 
-        public bool IsUserExist(LoginRequest request)
+        public bool IsCorrectPassword(LoginRequest request)
         {
-            var user = _dataProvider.Get<UserDb>(i => i.Login == request.Login).SingleOrDefault();
+            var user = _dataProvider.Get<UserDb>(i => i.Login == request.Login && i.Password == request.Password).SingleOrDefault();
 
             if (user == null)
                 return false;

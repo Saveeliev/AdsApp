@@ -1,0 +1,68 @@
+﻿@using AdsApp.Models.ViewModels
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div id="modalWindow" class="modalWindow"></div>
+
+<center>
+
+    <div class="header">
+
+        <div>
+
+            <a class="addAdvertisement" href="/Ad/Addadvertisement" id="addAdvertisementButton">Add advertisement</a>
+
+        </div>
+
+        <form class="logOutForm" method="post" asp-controller="User" asp-action="Logout">
+
+            <input class="enter" type="submit" value="Log out" />
+
+        </form>
+
+    </div>
+
+</center>
+
+<div class="mainContainer">
+
+    <div class="userInterfaceContainer">
+
+        <div class="ad">
+            <div class="imgContainer">
+
+            </div>
+            <div class="titleContainer">
+
+            </div>
+            <div class="userNameContainer">
+
+            </div>
+            <div class="dataContainer">
+
+            </div>
+            <div class="ratingContainer">
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+    var buttonToOpenModal = document.getElementById("buttonToOpenModal");
+    var modalWindow = document.getElementById("modalWindow");
+    var buttonToClose = document.getElementById("buttonToClose");
+
+    buttonToOpenModal.onclick = function () {
+        modalWindow.style.display = "block";
+    }
+
+    buttonToClose.onclick = function () {
+        modalWindow.style.display = "none";
+    }
+
+</script>

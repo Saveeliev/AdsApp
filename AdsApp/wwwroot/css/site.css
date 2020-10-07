@@ -30,13 +30,14 @@
 
 .logOutForm .enter {
     color: blue;
+    border: 0px;
 }
 
-.logOutForm .enter:hover {
-    text-decoration: underline;
-}
+    .logOutForm .enter:hover {
+        text-decoration: underline;
+    }
 
-#addAdvertisementWindow {
+#modalWindow {
     position: fixed;
     font-family: Arial, Helvetica, sans-serif;
     top: 0;
@@ -51,12 +52,7 @@
     display: none;
 }
 
-.validationLabel {
-    color: red;
-    font-size: 14px;
-}
-
-.addAdvertisementWindow {
+.modalWindow {
     display: block;
     position: relative;
     margin-top: 10%;
@@ -65,76 +61,54 @@
     background-color: #EEEEEE;
 }
 
-    .addAdvertisementWindow .buttontoCloseContainer {
+    .modalWindow .buttontoCloseContainer {
         position: absolute;
         top: 5px;
         right: 10px;
     }
 
-    .addAdvertisementWindow .buttontoCloseContainer img {
-        width: 25px;
-    }
+        .modalWindow .buttontoCloseContainer img {
+            width: 25px;
+        }
 
-    .addAdvertisementWindow .addAdvertisementForm {
-        padding-top: 60px;
-    }
+.validationLabel {
+    color: red;
+    font-size: 14px;
+}
 
-    .addAdvertisementWindow .addAdvertisementForm textarea, input {
+.buttonsContainer {
+    display: flex;
+    flex-direction: row;
+    margin-top: 15px;
+}
+
+.loginContainer {
+    display: flex;
+    flex-direction: column;
+    background-color: #EEEEEE;
+    padding: 20px;
+    margin-top: 100px;
+}
+
+.loginContainer .errorMessage {
+    color: red;
+    font-size: 14px;
+}
+
+    .loginContainer input, label {
         display: block;
         margin: 10px;
         border: 0px;
-        background-color: #DDDDDD;
     }
 
-        .addAdvertisementWindow .addAdvertisementForm textarea {
-            width: 400px;
-            height: 100px
-        }
+    .loginContainer input {
+        background-color: white;
+    }
 
-    .addAdvertisementWindow .addAdvertisementForm textarea:focus {
+    .loginContainer .enterData:focus {
         outline: none;
         border: 0px;
         box-shadow: none;
-    }
-
-    .addAdvertisementWindow .addAdvertisementForm .addAdvertisementButton {
-        padding: 5px 20px 5px 20px;
-        background-color: rgba(50,50,50,0.1);
-        margin-top: 20px;
-    }
-
-        .addAdvertisementWindow .addAdvertisementForm .addAdvertisementButton:hover {
-            background-color: rgba(50,50,50,0.2);
-        }
-
-    .loginContainer {
-        display: flex;
-        flex-direction: column;
-        background-color: #EEEEEE;
-        padding: 20px;
-        margin-top: 100px;
-    }
-
-        .loginContainer input, label {
-            display: block;
-            margin: 10px;
-            border: 0px;
-        }
-
-        .loginContainer input {
-            background-color: white;
-        }
-
-        .loginContainer .enterData:focus {
-            outline: none;
-            border: 0px;
-            box-shadow: none;
-        }
-
-.buttonsContainer {
-        display: flex;
-        flex-direction: row;
-        margin-top: 15px;
     }
 
     .loginContainer .enter {
@@ -173,11 +147,11 @@
         background-color: white;
     }
 
-        .registerContainer .enterData:focus {
-            outline: none;
-            border: 0px;
-            box-shadow: none;
-        }
+    .registerContainer .enterData:focus {
+        outline: none;
+        border: 0px;
+        box-shadow: none;
+    }
 
     .registerContainer .enter {
         padding: 5px 20px 5px 20px;
@@ -212,16 +186,19 @@
     }
 
     .ad .titleContainer {
+        background-color: #DDDDDD;
         grid-row: 1 / 2;
         grid-column: 2 / 5;
     }
 
     .ad .userNameContainer {
+        background-color: #DDDDDD;
         grid-row: 2 / 3;
         grid-column: 2 / 3;
     }
 
     .ad .dataContainer {
+        background-color: #DDDDDD;
         grid-row: 2 / 3;
         grid-column: 3 / 4;
     }

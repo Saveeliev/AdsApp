@@ -1,36 +1,75 @@
-﻿using AdsApp.Models;
+﻿using AdsApp.DTO;
 using AdsApp.Models.DTO;
 using AdsApp.Models.ViewModels;
 using AdsApp.Services;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.IdentityModel.Tokens;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace AdsApp.Controllers
 {
-    public class LoginController : Controller
+    public class UserController : Controller
     {
-        private readonly IDataProvider _dataProvider;
         private readonly IUserService _userService;
 
-        public LoginController(IDataProvider dataProvider, IUserService userService)
+        public UserController(IUserService userService)
         {
-            _dataProvider = dataProvider ?? throw new ArgumentNullException(nameof(dataProvider));
             _userService = userService ?? throw new ArgumentNullException(nameof(userService));
         }
 
+        [Authorize]
         public IActionResult Index()
         {
-            return View("~/Views/LoginView.cshtml");
+            return View();
+        }
+
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Login(LoginRequest request)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
+            if (!_userService.IsCorrectPassword(request))
+            {
+                ViewData["ErrorMessage"] = "Invalid data";
+                return View();
+            }
+
+            var token = Token(request);
+
+            HttpContext.Response.Cookies.Append("access_token", token.Token);
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Register(RegisterRequest request)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("~/Views/User/Register.cshtml");
+            }
+
+            await _userService.Register(request);
+
+            return RedirectToAction("Index");
         }
 
         [HttpPost]
@@ -38,25 +77,7 @@ namespace AdsApp.Controllers
         {
             HttpContext.Response.Cookies.Delete("access_token");
 
-            return Redirect("/Home");
-        }
-
-        [HttpPost]
-        public IActionResult Authenticate(LoginRequest request)
-        {
-            if(!ModelState.IsValid)
-            {
-                return View("~/Views/LoginView.cshtml");
-            }
-
-            if (!_userService.IsUserExist(request))
-                return View("~/Views/LoginView.cshtml", "User is not exist");
-
-            var token = Token(request);
-
-            HttpContext.Response.Cookies.Append("access_token", token.Token);
-
-            return Redirect("/Home");
+            return RedirectToAction("Index");
         }
 
         public TokenDto Token(LoginRequest request)

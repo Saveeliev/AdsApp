@@ -47,7 +47,7 @@ namespace AdsApp
                     IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(),
                     ValidateIssuerSigningKey = true
                 };
-                options.LoginPath = "/Login/";
+                options.LoginPath = "/User/Login";
                 options.Cookie.Name = "access_token";
                 options.Cookie.HttpOnly = true;
                 options.TicketDataFormat = new JwtDataFormat(SecurityAlgorithms.HmacSha256, tokenValidationParameters);
@@ -85,7 +85,7 @@ namespace AdsApp
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=User}/{action=Index}/{id?}");
             });
         }
     }

@@ -1,34 +1,37 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model AdsApp.DTO.RegisterRequest
+@{
+    ViewData["Title"] = "Register";
 }
-@model AdsApp.DTO.RegisterRequest
-
 <div asp-validation-summary="ModelOnly"></div>
 
 <div class="mainContainer">
     <div class="registerContainer">
 
-        <form method="post" action="~/Register/Register">
+        <form method="post" action="~/User/Register">
 
-            <label>Login<span class="validationLabel"> * </span>
+            <label>
+                Login<span class="validationLabel"> * </span>
                 <span class="validationLabel" asp-validation-for="Login"></span>
             </label>
 
             <input type="text" asp-for="Login" class="enterData" />
-            
-            <label>Name<span class="validationLabel"> * </span>
+
+            <label>
+                Name<span class="validationLabel"> * </span>
                 <span class="validationLabel" asp-validation-for="Name"></span>
             </label>
 
             <input type="text" asp-for="Name" class="enterData" />
-                
-            <label>Password<span class="validationLabel"> * </span>
+
+            <label>
+                Password<span class="validationLabel"> * </span>
                 <span class="validationLabel" asp-validation-for="Password"></span>
             </label>
 
             <input type="password" asp-for="Password" class="enterData" />
-            
-            <label>Confirm Password<span class="validationLabel"> * </span>
+
+            <label>
+                Confirm Password<span class="validationLabel"> * </span>
                 <span class="validationLabel" asp-validation-for="ConfirmPassword"></span>
             </label>
 
@@ -36,7 +39,7 @@
 
             <div class="buttonsContainer">
                 <input type="submit" class="enter" value="Enter" />
-                <a href="~/Login" class="buttonToLogin">Cancel</a>
+                <a href="~/User/Login" class="buttonToLogin">Cancel</a>
             </div>
         </form>
     </div>

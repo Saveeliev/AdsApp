@@ -1,5 +1,6 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Login";
+    var errorMessage = ViewData["ErrorMessage"];
 }
 @model AdsApp.Models.DTO.LoginRequest
 
@@ -7,7 +8,10 @@
 
 <div class="mainContainer">
     <div class="loginContainer">
-        <form method="post" action="~/Login/Authenticate">
+
+        <span class="errorMessage">@errorMessage</span>
+
+        <form method="post" action="~/User/Login">
             <label>
                 Login <span class="validationLabel" asp-validation-for="Login"></span>
             </label>
@@ -22,7 +26,7 @@
 
             <div class="buttonsContainer">
                 <input type="submit" class="enter" value="Enter" />
-                <a href="~/Register" class="buttonToRegister">Register</a>
+                <a href="~/User/Register" class="buttonToRegister">Register</a>
             </div>
         </form>
     </div>
