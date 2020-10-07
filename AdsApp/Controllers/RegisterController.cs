@@ -20,10 +20,16 @@ namespace AdsApp.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register(string login, string name, string password, string confirmPassword)
+        public async Task<IActionResult> Register(RegisterRequest request)
         {
-            await _userService.Register(new RegisterRequest { Login = login, Name = name, Password = password, ConfirmPassword = confirmPassword });
-            return RedirectToAction("Index");
+            if(!ModelState.IsValid)
+            {
+                return View("~/Views/RegisterView.cshtml");
+            }
+
+            await _userService.Register(request);
+
+            return RedirectToAction("Home");
         }
     }
 }

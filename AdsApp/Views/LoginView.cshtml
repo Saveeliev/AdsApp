@@ -1,14 +1,24 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@model AdsApp.Models.DTO.LoginRequest
+
+<div asp-validation-summary="ModelOnly"></div>
 
 <div class="mainContainer">
     <div class="loginContainer">
         <form method="post" action="~/Login/Authenticate">
-            <label>Login</label>
-            <input type="text" name="login" class="enterLogin" />
-            <label>Password</label>
-            <input type="password" name="password" class="enterPassword" />
+            <label>
+                Login <span class="validationLabel" asp-validation-for="Login"></span>
+            </label>
+
+            <input type="text" asp-for="Login" class="enterData" />
+
+            <label>
+                Password <span class="validationLabel" asp-validation-for="Password"></span>
+            </label>
+
+            <input type="password" asp-for="Password" class="enterData" />
 
             <div class="buttonsContainer">
                 <input type="submit" class="enter" value="Enter" />

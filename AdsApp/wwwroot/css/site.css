@@ -51,6 +51,11 @@
     display: none;
 }
 
+.validationLabel {
+    color: red;
+    font-size: 14px;
+}
+
 .addAdvertisementWindow {
     display: block;
     position: relative;
@@ -120,7 +125,7 @@
             background-color: white;
         }
 
-        .loginContainer .enterLogin:focus, .enterPassword:focus {
+        .loginContainer .enterData:focus {
             outline: none;
             border: 0px;
             box-shadow: none;
@@ -168,7 +173,7 @@
         background-color: white;
     }
 
-        .registerContainer .enterLogin:focus, .enterName:focus, .enterPassword:focus, .enterConfirmPassword:focus {
+        .registerContainer .enterData:focus {
             outline: none;
             border: 0px;
             box-shadow: none;

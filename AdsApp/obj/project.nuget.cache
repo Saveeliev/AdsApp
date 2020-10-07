@@ -1,9 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "mmdy/LJrt6o/YsYuR4R/pqrBABE61h7c2NUDL0+0zOTWupoD1QGe00wrprgOX65sbj4ZiAYsO2hlK1w1iDPEKA==",
+  "dgSpecHash": "/8zh5mO5E+a1oWJTqjebnELshPTdcpJTrhTXM3O0uzbMW0SB/x3F9DSiCxcf5ki7bntPp58kHrzhPJoc2WKamA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Church\\source\\repos\\AdsApp\\AdsApp\\AdsApp.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Church\\.nuget\\packages\\fluentvalidation\\9.2.0\\fluentvalidation.9.2.0.nupkg.sha512",
+    "C:\\Users\\Church\\.nuget\\packages\\fluentvalidation.aspnetcore\\9.2.0\\fluentvalidation.aspnetcore.9.2.0.nupkg.sha512",
+    "C:\\Users\\Church\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\9.2.0\\fluentvalidation.dependencyinjectionextensions.9.2.0.nupkg.sha512",
     "C:\\Users\\Church\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\3.1.8\\microsoft.aspnetcore.authentication.jwtbearer.3.1.8.nupkg.sha512",
     "C:\\Users\\Church\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\Church\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.0\\microsoft.bcl.hashcode.1.1.0.nupkg.sha512",

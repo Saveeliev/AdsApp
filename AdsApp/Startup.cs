@@ -3,13 +3,17 @@ using AdsApp.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc.ApplicationParts;
+using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using FluentValidation;
+using AdsApp.DTO;
+using AdsApp.Validations;
+using AdsApp.Models.ViewModels;
+using AdsApp.Models.DTO;
 
 namespace AdsApp
 {
@@ -27,6 +31,8 @@ namespace AdsApp
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<AdsAppContext>(options => options.UseSqlServer(connection));
             services.AddControllersWithViews();
+            
+            services.AddMvc().AddFluentValidation();
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
             .AddCookie(options =>
@@ -51,6 +57,8 @@ namespace AdsApp
             services.AddScoped<IDataProvider, DataProvider>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IAdService, AdService>();
+            services.AddTransient<IValidator<RegisterRequest>, RegisterRequestValidator>();
+            services.AddTransient<IValidator<LoginRequest>, LoginRequestValidator>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

@@ -1,18 +1,39 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@model AdsApp.DTO.RegisterRequest
+
+<div asp-validation-summary="ModelOnly"></div>
 
 <div class="mainContainer">
     <div class="registerContainer">
+
         <form method="post" action="~/Register/Register">
-            <label>Login</label>
-            <input type="text" name="login" class="enterLogin" />
-            <label>Name</label>
-            <input type="text" name="name" class="enterName" />
-            <label>Password</label>
-            <input type="text" name="password" class="enterPassword" />
-            <label>Confirm Password</label>
-            <input type="text" name="confirmPassword" class="enterConfirmPassword" />
+
+            <label>Login<span class="validationLabel"> * </span>
+                <span class="validationLabel" asp-validation-for="Login"></span>
+            </label>
+
+            <input type="text" asp-for="Login" class="enterData" />
+            
+            <label>Name<span class="validationLabel"> * </span>
+                <span class="validationLabel" asp-validation-for="Name"></span>
+            </label>
+
+            <input type="text" asp-for="Name" class="enterData" />
+                
+            <label>Password<span class="validationLabel"> * </span>
+                <span class="validationLabel" asp-validation-for="Password"></span>
+            </label>
+
+            <input type="password" asp-for="Password" class="enterData" />
+            
+            <label>Confirm Password<span class="validationLabel"> * </span>
+                <span class="validationLabel" asp-validation-for="ConfirmPassword"></span>
+            </label>
+
+            <input type="password" asp-for="ConfirmPassword" class="enterData" />
+
             <div class="buttonsContainer">
                 <input type="submit" class="enter" value="Enter" />
                 <a href="~/Login" class="buttonToLogin">Cancel</a>

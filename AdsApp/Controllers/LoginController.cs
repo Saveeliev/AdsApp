@@ -1,9 +1,11 @@
 ﻿using AdsApp.Models;
+using AdsApp.Models.DTO;
 using AdsApp.Models.ViewModels;
 using AdsApp.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using System;
@@ -18,10 +20,12 @@ namespace AdsApp.Controllers
     public class LoginController : Controller
     {
         private readonly IDataProvider _dataProvider;
+        private readonly IUserService _userService;
 
-        public LoginController(IDataProvider dataProvider)
+        public LoginController(IDataProvider dataProvider, IUserService userService)
         {
             _dataProvider = dataProvider ?? throw new ArgumentNullException(nameof(dataProvider));
+            _userService = userService ?? throw new ArgumentNullException(nameof(userService));
         }
 
         public IActionResult Index()
@@ -38,20 +42,26 @@ namespace AdsApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult Authenticate(string login, string password)
+        public IActionResult Authenticate(LoginRequest request)
         {
-            var user = new UserDto { Login = login, Password = password };
+            if(!ModelState.IsValid)
+            {
+                return View("~/Views/LoginView.cshtml");
+            }
 
-            var token = Token(user);
+            if (!_userService.IsUserExist(request))
+                return View("~/Views/LoginView.cshtml", "User is not exist");
+
+            var token = Token(request);
 
             HttpContext.Response.Cookies.Append("access_token", token.Token);
 
             return Redirect("/Home");
         }
 
-        public TokenDto Token(UserDto user)
+        public TokenDto Token(LoginRequest request)
         {
-            var identity = GetIdentity(user);
+            var identity = GetIdentity(request);
 
             var now = DateTime.UtcNow;
 
@@ -70,13 +80,11 @@ namespace AdsApp.Controllers
             return token;
         }
 
-        private ClaimsIdentity GetIdentity(UserDto user)
+        private ClaimsIdentity GetIdentity(LoginRequest request)
         {
-            var currentUser = _dataProvider.Get<UserDb>(i => i.Login == user.Login && i.Password == user.Password).SingleOrDefault();
-
             var claims = new List<Claim>
                 {
-                    new Claim(ClaimsIdentity.DefaultNameClaimType, user.Login)
+                    new Claim(ClaimsIdentity.DefaultNameClaimType, request.Login)
                 };
 
             ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, "Token", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);

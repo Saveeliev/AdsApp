@@ -74,8 +74,12 @@ C:\Users\Church\source\repos\AdsApp\AdsApp\bin\Debug\netcoreapp3.1\runtimes\unix
 C:\Users\Church\source\repos\AdsApp\AdsApp\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\Church\source\repos\AdsApp\AdsApp\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Church\source\repos\AdsApp\AdsApp\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
-C:\Users\Church\source\repos\AdsApp\AdsApp\obj\Debug\netcoreapp3.1\AdsApp.csproj.CoreCompileInputs.cache
-C:\Users\Church\source\repos\AdsApp\AdsApp\obj\Debug\netcoreapp3.1\AdsApp.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Church\source\repos\AdsApp\AdsApp\obj\Debug\netcoreapp3.1\Razor\Views\LoginView.cshtml.g.cs
 C:\Users\Church\source\repos\AdsApp\AdsApp\obj\Debug\netcoreapp3.1\Razor\Views\RegisterView.cshtml.g.cs
 C:\Users\Church\source\repos\AdsApp\AdsApp\obj\Debug\netcoreapp3.1\Razor\Views\UserInterfaceView.cshtml.g.cs
+C:\Users\Church\source\repos\AdsApp\AdsApp\bin\Debug\netcoreapp3.1\FluentValidation.dll
+C:\Users\Church\source\repos\AdsApp\AdsApp\bin\Debug\netcoreapp3.1\FluentValidation.AspNetCore.dll
+C:\Users\Church\source\repos\AdsApp\AdsApp\bin\Debug\netcoreapp3.1\FluentValidation.DependencyInjectionExtensions.dll
+C:\Users\Church\source\repos\AdsApp\AdsApp\obj\Debug\netcoreapp3.1\AdsApp.csproj.CoreCompileInputs.cache
+C:\Users\Church\source\repos\AdsApp\AdsApp\obj\Debug\netcoreapp3.1\AdsApp.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Church\source\repos\AdsApp\AdsApp\obj\Debug\netcoreapp3.1\AdsApp.MvcApplicationPartsAssemblyInfo.cache
