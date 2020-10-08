@@ -7,7 +7,7 @@ namespace AdsApp.Validations
     {
         public RegisterRequestValidator()
         {
-            RuleFor(i => i.Login).EmailAddress()
+            RuleFor(i => i.Login)
                 .NotNull().WithMessage("Login cannot be empty")
                 .Length(4, 10).WithMessage("Login length must be between 4 and 10")
                 .Matches(@"^\w+$").WithMessage("Login can contain only letters");

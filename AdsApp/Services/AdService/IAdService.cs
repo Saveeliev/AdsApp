@@ -7,6 +7,5 @@ namespace AdsApp.Services
     public interface IAdService
     {
         Task AddAdvertisement(AdDto ad);
-        List<AdDto> GetAds();
     }
 }

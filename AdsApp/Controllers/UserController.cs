@@ -42,9 +42,7 @@ namespace AdsApp.Controllers
         public IActionResult Login(LoginRequest request)
         {
             if (!ModelState.IsValid)
-            {
                 return View();
-            }
 
             if (!_userService.IsCorrectPassword(request))
             {
@@ -54,7 +52,7 @@ namespace AdsApp.Controllers
 
             var token = Token(request);
 
-            HttpContext.Response.Cookies.Append("access_token", token.Token);
+            HttpContext.Response.Cookies.Append("access_token", token);
 
             return RedirectToAction("Index");
         }
@@ -63,9 +61,7 @@ namespace AdsApp.Controllers
         public async Task<IActionResult> Register(RegisterRequest request)
         {
             if (!ModelState.IsValid)
-            {
                 return View("~/Views/User/Register.cshtml");
-            }
 
             await _userService.Register(request);
 
@@ -80,7 +76,7 @@ namespace AdsApp.Controllers
             return RedirectToAction("Index");
         }
 
-        public TokenDto Token(LoginRequest request)
+        public string Token(LoginRequest request)
         {
             var identity = GetIdentity(request);
 
@@ -96,9 +92,7 @@ namespace AdsApp.Controllers
 
             var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
 
-            var token = new TokenDto { Token = encodedJwt, Identity = identity };
-
-            return token;
+            return encodedJwt;
         }
 
         private ClaimsIdentity GetIdentity(LoginRequest request)

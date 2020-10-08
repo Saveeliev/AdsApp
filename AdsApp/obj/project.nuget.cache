@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "/8zh5mO5E+a1oWJTqjebnELshPTdcpJTrhTXM3O0uzbMW0SB/x3F9DSiCxcf5ki7bntPp58kHrzhPJoc2WKamA==",
+  "dgSpecHash": "Daac97sf9CdLL32ENTTAiZvjYEoL6LwxUOpd0zVkojCuPTqgOEMQgv9cN/yTWhuOQAOBpWnrGLMzp5P7HnFkWg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Church\\source\\repos\\AdsApp\\AdsApp\\AdsApp.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Church\\.nuget\\packages\\bcrypt.net-next\\4.0.0\\bcrypt.net-next.4.0.0.nupkg.sha512",
     "C:\\Users\\Church\\.nuget\\packages\\fluentvalidation\\9.2.0\\fluentvalidation.9.2.0.nupkg.sha512",
     "C:\\Users\\Church\\.nuget\\packages\\fluentvalidation.aspnetcore\\9.2.0\\fluentvalidation.aspnetcore.9.2.0.nupkg.sha512",
     "C:\\Users\\Church\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\9.2.0\\fluentvalidation.dependencyinjectionextensions.9.2.0.nupkg.sha512",

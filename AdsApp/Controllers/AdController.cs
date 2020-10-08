@@ -27,7 +27,7 @@ namespace AdsApp.Controllers
         }
 
         [HttpPost]
-        public async Task<string> AddAdvertisement(string text)
+        public async Task<IActionResult> AddAdvertisement(string text)
         {
             var userClaims = User.Claims;
             string userName;
@@ -43,7 +43,7 @@ namespace AdsApp.Controllers
                 }
             }
 
-            return "Success!";
+            return Redirect("/User/");
         }
     }
 }

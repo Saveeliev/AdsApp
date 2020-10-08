@@ -20,20 +20,8 @@ namespace AdsApp.Services
         {
             var currentUser = _dataProvider.Get<UserDb>(i => i.Login == ad.UserName).SingleOrDefault();
             var currentAd = new AdDb { CreatedDate = DateTime.Now, Text = ad.Text, UserId = currentUser.Id };
-            await _dataProvider.Insert(currentAd);
-        }
 
-        public List<AdDto> GetAds()
-        {
-            var ads = _dataProvider.Get<AdDb>(i => i.Id != null).Select(
-                j => new AdDto
-                {
-                    Id = j.Id,
-                    UserName = j.User.Login,
-                    CreatedDate = j.CreatedDate,
-                    Text = j.Text
-                }).ToList();
-            return ads;
+            await _dataProvider.Insert(currentAd);
         }
     }
 }

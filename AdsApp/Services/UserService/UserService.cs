@@ -18,14 +18,17 @@ namespace AdsApp
 
         public async Task Register(RegisterRequest request)
         {
-            await _dataProvider.Insert(new UserDb { Login = request.Login.ToLower(), Name = request.Name, Password = request.Password });
+            var hash = BCrypt.Net.BCrypt.HashPassword(request.Password);
+
+            await _dataProvider.Insert(new UserDb { Login = request.Login.ToLower(), Name = request.Name, Password = hash });
         }
 
         public bool IsCorrectPassword(LoginRequest request)
         {
-            var user = _dataProvider.Get<UserDb>(i => i.Login == request.Login && i.Password == request.Password).SingleOrDefault();
+            var user = _dataProvider.Get<UserDb>(i => i.Login == request.Login).SingleOrDefault();
+            var varify = BCrypt.Net.BCrypt.Verify(request.Password, user.Password);
 
-            if (user == null)
+            if (varify == false)
                 return false;
 
             return true;
