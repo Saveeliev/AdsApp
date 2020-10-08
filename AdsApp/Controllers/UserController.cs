@@ -44,7 +44,7 @@ namespace AdsApp.Controllers
             if (!ModelState.IsValid)
                 return View();
 
-            if (!_userService.IsCorrectPassword(request))
+            if (!_userService.Login(request))
             {
                 ViewData["ErrorMessage"] = "Invalid data";
                 return View();
@@ -62,6 +62,12 @@ namespace AdsApp.Controllers
         {
             if (!ModelState.IsValid)
                 return View("~/Views/User/Register.cshtml");
+
+            if (_userService.IsUserExist(request))
+            {
+                ViewData["ErrorMessage"] = "User is already exist";
+                return View();
+            }
 
             await _userService.Register(request);
 

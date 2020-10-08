@@ -23,15 +23,26 @@ namespace AdsApp
             await _dataProvider.Insert(new UserDb { Login = request.Login.ToLower(), Name = request.Name, Password = hash });
         }
 
-        public bool IsCorrectPassword(LoginRequest request)
+        public bool Login(LoginRequest request)
         {
             var user = _dataProvider.Get<UserDb>(i => i.Login == request.Login).SingleOrDefault();
+
             var varify = BCrypt.Net.BCrypt.Verify(request.Password, user.Password);
 
             if (varify == false)
                 return false;
 
             return true;
+        }
+
+        public bool IsUserExist(RegisterRequest request)
+        {
+            var result = _dataProvider.Get<UserDb>(i => i.Login == request.Login).SingleOrDefault();
+
+            if (result != null)
+                return true;
+
+            return false;
         }
     }
 }

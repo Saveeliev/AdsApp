@@ -1,11 +1,14 @@
 ﻿@model AdsApp.DTO.RegisterRequest
 @{
     ViewData["Title"] = "Register";
+    var errorMessage = ViewData["ErrorMessage"];
 }
 <div asp-validation-summary="ModelOnly"></div>
 
 <div class="mainContainer">
     <div class="registerContainer">
+
+        <span class="errorMessage">@errorMessage</span>
 
         <form method="post" action="~/User/Register">
 
