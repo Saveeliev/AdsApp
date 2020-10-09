@@ -1,5 +1,8 @@
 ﻿using AdsApp.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using System;
+using System.Data;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -36,6 +39,13 @@ namespace AdsApp.Services
         {
             _context.Remove(model);
             await _context.SaveChangesAsync();
+        }
+
+        public IDbContextTransaction CreateTransaction(IsolationLevel isolationLevel)
+        {
+            var transaction = _context.Database.BeginTransaction(isolationLevel);
+
+            return transaction;
         }
     }
 }

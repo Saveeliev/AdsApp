@@ -18,8 +18,7 @@ namespace AdsApp.Services
 
         public async Task AddAdvertisement(AdDto ad)
         {
-            var currentUser = _dataProvider.Get<UserDb>(i => i.Login == ad.UserName).SingleOrDefault();
-            var currentAd = new AdDb { CreatedDate = DateTime.Now, Text = ad.Text, UserId = currentUser.Id };
+            var currentAd = new AdDb { CreatedDate = DateTime.Now, Text = ad.Text, UserId = ad.UserId };
 
             await _dataProvider.Insert(currentAd);
         }

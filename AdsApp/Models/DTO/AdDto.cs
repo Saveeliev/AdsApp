@@ -10,6 +10,6 @@ namespace AdsApp.Models.ViewModels
         public string Text { get; set; }
         public byte[] Image { get; set; }
         public DateTime CreatedDate { get; set; }
-        public string UserName { get; set; }
+        public Guid UserId { get; set; }
     }
 }

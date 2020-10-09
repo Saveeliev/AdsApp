@@ -17,6 +17,17 @@
     width: 100%;
 }
 
+.header-left {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+}
+
+.header-left div {
+    margin-right: 30px;
+}
+
 .userInterfaceContainer {
     display: flex;
     justify-content: center;
@@ -213,3 +224,11 @@
         grid-row: 2 / 3;
         grid-column: 4 / 5;
     }
+
+.addAdvertisementContainer {
+    display: flex;
+    flex-direction: column;
+    background-color: #EEEEEE;
+    padding: 20px;
+    margin-top: 100px;
+}

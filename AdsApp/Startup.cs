@@ -85,7 +85,7 @@ namespace AdsApp
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=User}/{action=Index}/{id?}");
+                    pattern: "{controller=Ads}/{action=Index}/{id?}");
             });
         }
     }

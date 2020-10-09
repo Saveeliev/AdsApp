@@ -6,12 +6,47 @@
     <title>@ViewData["Title"] - AdsApp</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
-    <link rel="stylesheet" href="~/css/LoginView.css" />
-    <link rel="stylesheet" href="~/css/RegisterView.css" />
-    <link rel="stylesheet" href="~/css/UserInterfaceView.css" />
 </head>
 <body>
     <header>
+
+        @if (IsSectionDefined("Header"))
+        {
+            @RenderSection("Header")
+        }
+        else
+        {
+            <center>
+
+                <div class="header">
+
+                    <div class="header-left">
+
+                        <div>
+
+                            <a href="/Ads">Home</a>
+
+                        </div>
+
+                        <div>
+
+                            <a href="/Ads/Addadvertisement">Add advertisement</a>
+
+                        </div>
+
+                    </div>
+
+                    <form class="logOutForm" method="post" asp-controller="User" asp-action="Logout">
+
+                        <input class="enter" type="submit" value="Log out" />
+
+                    </form>
+
+                </div>
+
+            </center>
+        }
+
     </header>
 
     <div>
