@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
@@ -37,7 +38,11 @@ namespace AdsApp
                 Password = hash
             };
 
+            using var transaction = _dataProvider.CreateTransaction(IsolationLevel.Serializable);
+
             await _dataProvider.Insert(userDb);
+
+            transaction.Commit();
 
             return new EmptyResult();
         }

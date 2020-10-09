@@ -9,15 +9,17 @@
 
         <form method="post" action="~/Ads/AddAdvertisement">
 
-            <label>
-                Add new advertisement <span class="validationLabel"></span>
-            </label>
+            <div>
 
-            <textarea asp-for="Text" class="enterData"></textarea>
+                <label class="title">Add new advertisement <span class="validationLabel"></span></label>
 
-            <div class="buttonsContainer">
-                <input type="submit" class="enter" value="Enter" />
-                <a href="~/Ads/Index" class="buttonToRegister">Cancel</a>
+                <textarea asp-for="Text" class="enterData"></textarea>
+
+                <div class="buttonsContainer">
+                    <input type="submit" class="buttonToEnter" value="Enter" />
+                    <a href="~/Ads/Index" class="buttonToCancel">Cancel</a>
+                </div>
+
             </div>
 
         </form>

@@ -1,4 +1,9 @@
-﻿.mainContainer {
+﻿* {
+    font-size: 16px;
+    font-family: Calibri;
+}
+
+.mainContainer {
     display: flex;
     justify-content: center;
     width: 100%;
@@ -9,11 +14,11 @@
     justify-content: space-between;
     align-items: center;
     text-align: left;
-    padding-top: 30px;
-    padding-bottom: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     padding-left: 40px;
     padding-right: 40px;
-    background-color: #EEEEEE;
+    background-color: white;
     width: 100%;
 }
 
@@ -24,9 +29,9 @@
     text-align: left;
 }
 
-.header-left div {
-    margin-right: 30px;
-}
+    .header-left div {
+        margin-right: 30px;
+    }
 
 .userInterfaceContainer {
     display: flex;
@@ -41,12 +46,25 @@
 
 .logOutForm .enter {
     color: blue;
+    outline: none;
     border: 0px;
+    background-color: white;
 }
 
     .logOutForm .enter:hover {
         text-decoration: underline;
     }
+
+    .logOutForm .enter:active {
+        color: blue;
+        border: 0px;
+        outline: none;
+        background-color: white;
+    }
+
+.title {
+    font-size: 18px;
+}
 
 #modalWindow {
     position: fixed;
@@ -87,10 +105,46 @@
     font-size: 14px;
 }
 
+.enterData {
+    display: block;
+    background-color: white;
+    border: 0px;
+}
+
+    .enterData:focus {
+        outline: none;
+        border: 0px;
+        box-shadow: none;
+    }
+
 .buttonsContainer {
     display: flex;
     flex-direction: row;
-    margin-top: 15px;
+    margin: 10px;
+    margin-top: 25px;
+}
+
+.buttonToEnter {
+    padding: 5px 20px 5px 20px;
+    background: #DDDDDD;
+    border: 0px;
+}
+
+    .buttonToEnter:hover {
+        background: #CCCCCC;
+    }
+
+.buttonToCancel {
+    display: block;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 20px;
+    font-size: 15px;
+}
+
+.errorMessage {
+    color: red;
+    font-size: 14px;
 }
 
 .loginContainer {
@@ -101,42 +155,13 @@
     margin-top: 100px;
 }
 
-    .loginContainer .errorMessage {
-        color: red;
-        font-size: 14px;
-    }
-
-    .loginContainer input, label {
+    .loginContainer label {
         display: block;
         margin: 10px;
-        border: 0px;
     }
 
-    .loginContainer input {
-        background-color: white;
-    }
-
-    .loginContainer .enterData:focus {
-        outline: none;
-        border: 0px;
-        box-shadow: none;
-    }
-
-    .loginContainer .enter {
-        padding: 5px 20px 5px 20px;
-        background-color: rgba(50,50,50,0.1);
-    }
-
-        .loginContainer .enter:hover {
-            background-color: rgba(50,50,50,0.2);
-        }
-
-    .loginContainer .buttonToRegister {
-        display: block;
-        margin-top: auto;
-        margin-bottom: auto;
-        margin-left: 20px;
-        font-size: 15px;
+    .loginContainer .enterData {
+        margin: 10px;
     }
 
 
@@ -148,42 +173,13 @@
     flex-direction: column;
 }
 
-    .registerContainer .errorMessage {
-        color: red;
-        font-size: 14px;
-    }
-
-    .registerContainer input, label {
+    .registerContainer label {
         display: block;
         margin: 10px;
-        border: 0px;
     }
 
-    .registerContainer input {
-        background-color: white;
-    }
-
-    .registerContainer .enterData:focus {
-        outline: none;
-        border: 0px;
-        box-shadow: none;
-    }
-
-    .registerContainer .enter {
-        padding: 5px 20px 5px 20px;
-        background-color: rgba(50,50,50,0.1);
-    }
-
-        .registerContainer .enter:hover {
-            background-color: rgba(50,50,50,0.2);
-        }
-
-    .registerContainer .buttonToLogin {
-        display: block;
-        margin-top: auto;
-        margin-bottom: auto;
-        margin-left: 20px;
-        font-size: 15px;
+    .registerContainer .enterData {
+        margin: 10px;
     }
 
 .ad {
@@ -227,8 +223,21 @@
 
 .addAdvertisementContainer {
     display: flex;
+    align-items: center;
     flex-direction: column;
+    width: 100%;
     background-color: #EEEEEE;
     padding: 20px;
-    margin-top: 100px;
+    padding-top: 50px;
+    padding-bottom: 100px;
 }
+
+    .addAdvertisementContainer .enterData {
+        width: 800px;
+        height: 300px;
+        border: 0px;
+    }
+
+    .addAdvertisementContainer .title {
+        margin-bottom: 20px;
+    }
