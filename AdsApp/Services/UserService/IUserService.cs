@@ -10,6 +10,5 @@ namespace AdsApp.Services
     {
         Task<IActionResult> Register(RegisterRequest request);
         LoginResult Login(LoginRequest request);
-        bool IsUserExist(RegisterRequest request);
     }
 }

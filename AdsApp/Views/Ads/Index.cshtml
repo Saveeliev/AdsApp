@@ -1,4 +1,4 @@
-﻿@using AdsApp.Models.ViewModels
+﻿@model List<AdsApp.Models.ViewModels.AdDto>
 @{
     ViewData["Title"] = "Home";
 }
@@ -9,24 +9,35 @@
 
     <div class="userInterfaceContainer">
 
+        @foreach (var ad in Model)
+        {
         <div class="ad">
             <div class="imgContainer">
 
             </div>
             <div class="titleContainer">
+                @ad.Text
+            </div>
+            <div class="adButtonsContainer">
+
+                <form method="get" action="~/Ads/UpdateAdvertisement">
+                    <input type="hidden" value="@ad.Id" name="adId" />
+                    <input type="submit" value="U"/>
+                </form>
 
             </div>
             <div class="userNameContainer">
-
+                
             </div>
             <div class="dataContainer">
-
+                @ad.CreatedDate
             </div>
             <div class="ratingContainer">
 
             </div>
         </div>
-
+        }
+        
     </div>
 
 </div>

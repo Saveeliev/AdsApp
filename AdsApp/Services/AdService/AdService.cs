@@ -22,5 +22,42 @@ namespace AdsApp.Services
 
             await _dataProvider.Insert(currentAd);
         }
+
+        public async Task UpdateAdvertisement(AdDto ad)
+        {
+            var currentAd = _dataProvider.Get<AdDb>(i => i.Id == ad.Id).SingleOrDefault();
+            currentAd.Text = ad.Text;
+
+            await _dataProvider.Update(currentAd);
+        }
+
+        public AdDto GetAd(Guid adId)
+        {
+            var ad = _dataProvider.Get<AdDb>(i => i.Id == adId)
+                .Select(i => new AdDto
+                {
+                    Id = i.Id,
+                    Text = i.Text,
+                    CreatedDate = i.CreatedDate
+                }).SingleOrDefault();
+
+            return ad;
+        }
+
+        public List<AdDto> GetAllAds()
+        {
+            var ads = _dataProvider.Get<AdDb>(i => i.Id != null)
+                .Select(i => new AdDto
+                {
+                    Id = i.Id,
+                    Text = i.Text,
+                    CreatedDate = i.CreatedDate,
+                    Image = i.Image,
+                    UserId = i.UserId,
+                    Number = i.Number
+                }).OrderByDescending(i => i.CreatedDate).ToList();
+
+            return ads;
+        }
     }
 }

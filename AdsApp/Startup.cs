@@ -59,6 +59,7 @@ namespace AdsApp
             services.AddScoped<IAdService, AdService>();
             services.AddTransient<IValidator<RegisterRequest>, RegisterRequestValidator>();
             services.AddTransient<IValidator<LoginRequest>, LoginRequestValidator>();
+            services.AddTransient<IValidator<AdDto>, AdValidator>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

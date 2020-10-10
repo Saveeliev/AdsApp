@@ -3,6 +3,8 @@
 }
 @model AdsApp.Models.ViewModels.AdDto
 
+<div asp-validation-summary="ModelOnly"></div>
+
 <div class="mainContainer">
 
     <div class="addAdvertisementContainer">
@@ -11,7 +13,7 @@
 
             <div>
 
-                <label class="title">Add new advertisement <span class="validationLabel"></span></label>
+                <label class="title">Add new advertisement <span class="validationLabel" asp-validation-for="Text"></span></label>
 
                 <textarea asp-for="Text" class="enterData"></textarea>
 

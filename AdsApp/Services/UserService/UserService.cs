@@ -26,7 +26,11 @@ namespace AdsApp
 
         public async Task<IActionResult> Register(RegisterRequest request)
         {
-            if (IsUserExist(request))
+            using var transaction = _dataProvider.CreateTransaction(IsolationLevel.Serializable);
+
+            var user = _dataProvider.Get<UserDb>(i => i.Login == request.Login.ToLower()).SingleOrDefault();
+           
+            if (user == null)
                 return null;
 
             var hash = BCrypt.Net.BCrypt.HashPassword(request.Password);
@@ -38,8 +42,6 @@ namespace AdsApp
                 Password = hash
             };
 
-            using var transaction = _dataProvider.CreateTransaction(IsolationLevel.Serializable);
-
             await _dataProvider.Insert(userDb);
 
             transaction.Commit();
@@ -49,9 +51,9 @@ namespace AdsApp
 
         public LoginResult Login(LoginRequest request)
         {
-            request.Login = request.Login.ToLower();
+            var loginLower = request.Login.ToLower();
 
-            var user = _dataProvider.Get<UserDb>(i => i.Login == request.Login).SingleOrDefault();
+            var user = _dataProvider.Get<UserDb>(i => i.Login == loginLower).SingleOrDefault();
 
             if (user == null)
                 return null;
@@ -61,26 +63,14 @@ namespace AdsApp
             if (!varify)
                 return null;
 
-            request.UserId = user.Id;
-
-            var token = Token(request);
+            var token = Token(user.Id);
 
             return new LoginResult { Token = token };
         }
 
-        public bool IsUserExist(RegisterRequest request)
+        private string Token(Guid userId)
         {
-            var result = _dataProvider.Get<UserDb>(i => i.Login == request.Login).SingleOrDefault();
-
-            if (result != null)
-                return true;
-
-            return false;
-        }
-
-        public string Token(LoginRequest request)
-        {
-            var identity = GetIdentity(request);
+            var identity = GetIdentity(userId);
 
             var now = DateTime.UtcNow;
 
@@ -97,11 +87,11 @@ namespace AdsApp
             return encodedJwt;
         }
 
-        private ClaimsIdentity GetIdentity(LoginRequest request)
+        private ClaimsIdentity GetIdentity(Guid userId)
         {
             var claims = new List<Claim>
                 {
-                    new Claim(ClaimsIdentity.DefaultNameClaimType, request.UserId.ToString())
+                    new Claim(ClaimsIdentity.DefaultNameClaimType, userId.ToString())
                 };
 
             ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, "Token", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);

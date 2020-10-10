@@ -86,3 +86,4 @@ C:\Users\Church\source\repos\AdsApp\AdsApp\obj\Debug\netcoreapp3.1\AdsApp.MvcApp
 C:\Users\Church\source\repos\AdsApp\AdsApp\obj\Debug\netcoreapp3.1\AdsApp.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Church\source\repos\AdsApp\AdsApp\obj\Debug\netcoreapp3.1\Razor\Views\Ads\AddAdvertisement.cshtml.g.cs
 C:\Users\Church\source\repos\AdsApp\AdsApp\obj\Debug\netcoreapp3.1\Razor\Views\Ads\Index.cshtml.g.cs
+C:\Users\Church\source\repos\AdsApp\AdsApp\obj\Debug\netcoreapp3.1\Razor\Views\Ads\UpdateAdvertisement.cshtml.g.cs

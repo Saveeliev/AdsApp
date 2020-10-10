@@ -9,10 +9,10 @@ namespace AdsApp.Validations
         public LoginRequestValidator()
         {
             RuleFor(i => i.Login)
-                .NotNull().WithMessage("Login cannot be empty");
+                .NotEmpty().WithMessage("Login cannot be empty");
 
             RuleFor(i => i.Password)
-                .NotNull().WithMessage("Password cannot be empty");
+                .NotEmpty().WithMessage("Password cannot be empty");
         }
     }
 }
