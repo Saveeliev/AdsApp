@@ -1,15 +1,10 @@
-﻿using AdsApp.Models.DTO.ActionResult;
+﻿using AdsApp.Extensions;
 using AdsApp.Models.ViewModels;
 using AdsApp.Services;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
+using PagedList.Core;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.ExceptionServices;
-using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace AdsApp.Controllers
@@ -26,7 +21,7 @@ namespace AdsApp.Controllers
         [Authorize]
         public IActionResult Index()
         {
-            var ads = _adService.GetAllAds();
+            var ads = _adService.GetAds();
             return View(ads);
         }
 
@@ -42,6 +37,9 @@ namespace AdsApp.Controllers
         {
             var ad = _adService.GetAd(adId);
 
+            if (ad.UserId != User.Claims.GetUserId())
+                return RedirectToAction("Index");
+
             ViewData["AdId"] = adId.ToString();
             ViewData["AdText"] = ad.Text;
             return View();
@@ -54,25 +52,21 @@ namespace AdsApp.Controllers
             if (!ModelState.IsValid)
                 return View();
 
-            var userId = User.Claims.Single(i => i.Type == ClaimsIdentity.DefaultNameClaimType).Value;
+            var userId = User.Claims.GetUserId();
 
-            ad.UserId = Guid.Parse(userId);
-
-            await _adService.AddAdvertisement(ad);
+            await _adService.AddAdvertisement(ad, userId);
 
             return RedirectToAction("Index");
         }
 
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> UpdateAdvertisement(string adText, string adId)
-        {
-            var ad = new AdDto { Id = Guid.Parse(adId), Text = adText };
-
+        public async Task<IActionResult> UpdateAdvertisement(string adText, Guid adId)
+        { 
             if (!ModelState.IsValid)
                 return View();
 
-            await _adService.UpdateAdvertisement(ad);
+            var result = await _adService.UpdateAdvertisement(adId, adText, User.Claims.GetUserId());
 
             return RedirectToAction("Index");
         }

@@ -64,6 +64,10 @@
               "target": "Package",
               "version": "[3.1.8, )"
             },
+            "PagedList.Core.Mvc": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
             "System.Drawing.Common": {
               "target": "Package",
               "version": "[4.7.0, )"

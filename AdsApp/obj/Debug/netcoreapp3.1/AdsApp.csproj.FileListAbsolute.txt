@@ -81,9 +81,11 @@ C:\Users\Church\source\repos\AdsApp\AdsApp\obj\Debug\netcoreapp3.1\Razor\Views\U
 C:\Users\Church\source\repos\AdsApp\AdsApp\obj\Debug\netcoreapp3.1\Razor\Views\User\Register.cshtml.g.cs
 C:\Users\Church\source\repos\AdsApp\AdsApp\bin\Debug\netcoreapp3.1\libman.json
 C:\Users\Church\source\repos\AdsApp\AdsApp\bin\Debug\netcoreapp3.1\BCrypt.Net-Next.dll
-C:\Users\Church\source\repos\AdsApp\AdsApp\obj\Debug\netcoreapp3.1\AdsApp.csproj.CoreCompileInputs.cache
-C:\Users\Church\source\repos\AdsApp\AdsApp\obj\Debug\netcoreapp3.1\AdsApp.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\Church\source\repos\AdsApp\AdsApp\obj\Debug\netcoreapp3.1\AdsApp.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Church\source\repos\AdsApp\AdsApp\obj\Debug\netcoreapp3.1\Razor\Views\Ads\AddAdvertisement.cshtml.g.cs
 C:\Users\Church\source\repos\AdsApp\AdsApp\obj\Debug\netcoreapp3.1\Razor\Views\Ads\Index.cshtml.g.cs
 C:\Users\Church\source\repos\AdsApp\AdsApp\obj\Debug\netcoreapp3.1\Razor\Views\Ads\UpdateAdvertisement.cshtml.g.cs
+C:\Users\Church\source\repos\AdsApp\AdsApp\obj\Debug\netcoreapp3.1\AdsApp.csproj.CoreCompileInputs.cache
+C:\Users\Church\source\repos\AdsApp\AdsApp\obj\Debug\netcoreapp3.1\AdsApp.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Church\source\repos\AdsApp\AdsApp\obj\Debug\netcoreapp3.1\AdsApp.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Church\source\repos\AdsApp\AdsApp\bin\Debug\netcoreapp3.1\PagedList.Core.dll
+C:\Users\Church\source\repos\AdsApp\AdsApp\bin\Debug\netcoreapp3.1\PagedList.Core.Mvc.dll

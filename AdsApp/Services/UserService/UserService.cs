@@ -30,7 +30,7 @@ namespace AdsApp
 
             var user = _dataProvider.Get<UserDb>(i => i.Login == request.Login.ToLower()).SingleOrDefault();
            
-            if (user == null)
+            if (user != null)
                 return null;
 
             var hash = BCrypt.Net.BCrypt.HashPassword(request.Password);

@@ -19,6 +19,10 @@ namespace AdsApp.Models
             modelBuilder.Entity<RatingDb>()
                 .HasIndex(u => new { u.UserId, u.AdId })
                 .IsUnique();
+
+            modelBuilder.Entity<AdDb>()
+            .Property(p => p.Number)
+            .ValueGeneratedOnAdd();
         }
     }
 }

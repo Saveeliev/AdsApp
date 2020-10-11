@@ -33,7 +33,10 @@
                 @ad.CreatedDate
             </div>
             <div class="ratingContainer">
-
+                <form method="get" action="~/Ads/Like">
+                    <input type="hidden" value="@ad.Id" name="adId" />
+                    <input type="submit" value="L" />
+                </form>
             </div>
         </div>
         }

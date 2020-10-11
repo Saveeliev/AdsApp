@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Daac97sf9CdLL32ENTTAiZvjYEoL6LwxUOpd0zVkojCuPTqgOEMQgv9cN/yTWhuOQAOBpWnrGLMzp5P7HnFkWg==",
+  "dgSpecHash": "IU2XYg2XRWlzIZGu/PH8NEQiNlN/xuXp55ZlYHhrgAEbwoJQxpQNcrLgHFRsZlxDnpHeU8KzgiTdLiLWMGkFXg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Church\\source\\repos\\AdsApp\\AdsApp\\AdsApp.csproj",
   "expectedPackageFiles": [
@@ -42,6 +42,8 @@
     "C:\\Users\\Church\\.nuget\\packages\\microsoft.win32.registry\\4.5.0\\microsoft.win32.registry.4.5.0.nupkg.sha512",
     "C:\\Users\\Church\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "C:\\Users\\Church\\.nuget\\packages\\newtonsoft.json\\10.0.1\\newtonsoft.json.10.0.1.nupkg.sha512",
+    "C:\\Users\\Church\\.nuget\\packages\\pagedlist.core\\1.17.4\\pagedlist.core.1.17.4.nupkg.sha512",
+    "C:\\Users\\Church\\.nuget\\packages\\pagedlist.core.mvc\\3.0.0\\pagedlist.core.mvc.3.0.0.nupkg.sha512",
     "C:\\Users\\Church\\.nuget\\packages\\runtime.native.system\\4.3.0\\runtime.native.system.4.3.0.nupkg.sha512",
     "C:\\Users\\Church\\.nuget\\packages\\runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\Church\\.nuget\\packages\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
