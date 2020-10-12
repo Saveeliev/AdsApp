@@ -108,11 +108,13 @@ namespace AdsApp.Migrations
                 {
                     b.HasOne("AdsApp.Models.AdDb", "Ad")
                         .WithMany("Ratings")
-                        .HasForeignKey("AdId");
+                        .HasForeignKey("AdId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("AdsApp.Models.UserDb", "User")
                         .WithMany("Ratings")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.NoAction);
                 });
 #pragma warning restore 612, 618
         }

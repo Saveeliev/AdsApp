@@ -24,10 +24,19 @@
 
                     @if (ad.UserId == userId)
                     {
-                        <form method="get" action="~/Ads/UpdateAdvertisement">
-                            <input type="hidden" value="@ad.Id" name="adId" />
-                            <input type="submit" value="U" />
-                        </form>
+                        <div>
+                            <form method="get" action="~/Ads/UpdateAdvertisement">
+                                <input type="hidden" value="@ad.Id" name="adId" />
+                                <input type="submit" value="U" />
+                            </form>
+                        </div>
+
+                        <div>
+                            <form method="post" action="~/Ads/Delete">
+                                <input type="hidden" value="@ad.Id" name="adId" />
+                                <input type="submit" value="D" />
+                            </form>
+                        </div>
                     }
 
                 </div>
@@ -41,7 +50,7 @@
 
                     <div>
 
-                        <form method="get" action="~/Ads/Like">
+                        <form method="post" action="~/Ads/Like">
                             <input type="hidden" value="@ad.Id" name="adId" />
                             <input type="submit" value="L" />
                         </form>
@@ -53,7 +62,7 @@
                     </div>
 
                     <div>
-                        <form method="get" action="~/Ads/DisLike">
+                        <form method="post" action="~/Ads/DisLike">
                             <input type="hidden" value="@ad.Id" name="adId" />
                             <input type="submit" value="D" />
                         </form>

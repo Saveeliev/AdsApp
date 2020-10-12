@@ -219,7 +219,13 @@
         background-color: #DDDDDD;
         grid-row: 1 / 2;
         grid-column: 4 / 5;
+        display: flex;
+        padding: 10px;
     }
+
+        .ad .adButtonsContainer div {
+            margin-right: 10px;
+        }
 
     .ad .userNameContainer {
         background-color: #DDDDDD;

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AdsApp.Migrations
 {
     [DbContext(typeof(AdsAppContext))]
-    [Migration("20201011155620_7")]
-    partial class _7
+    [Migration("20201012185623_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -110,11 +110,13 @@ namespace AdsApp.Migrations
                 {
                     b.HasOne("AdsApp.Models.AdDb", "Ad")
                         .WithMany("Ratings")
-                        .HasForeignKey("AdId");
+                        .HasForeignKey("AdId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("AdsApp.Models.UserDb", "User")
                         .WithMany("Ratings")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.NoAction);
                 });
 #pragma warning restore 612, 618
         }

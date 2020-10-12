@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AdsApp.Migrations
 {
-    public partial class _1 : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,7 +12,9 @@ namespace AdsApp.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    Name = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(nullable: true),
+                    Login = table.Column<string>(nullable: true),
+                    Password = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -24,7 +26,8 @@ namespace AdsApp.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    Number = table.Column<int>(nullable: false),
+                    Number = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Text = table.Column<string>(nullable: true),
                     Image = table.Column<byte[]>(nullable: true),
                     CreatedDate = table.Column<DateTime>(nullable: false),
@@ -46,6 +49,7 @@ namespace AdsApp.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
+                    IsLiked = table.Column<bool>(nullable: false),
                     UserId = table.Column<Guid>(nullable: true),
                     AdId = table.Column<Guid>(nullable: true)
                 },
@@ -57,13 +61,12 @@ namespace AdsApp.Migrations
                         column: x => x.AdId,
                         principalTable: "Ads",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Ratings_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
@@ -77,9 +80,11 @@ namespace AdsApp.Migrations
                 column: "AdId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Ratings_UserId",
+                name: "IX_Ratings_UserId_AdId",
                 table: "Ratings",
-                column: "UserId");
+                columns: new[] { "UserId", "AdId" },
+                unique: true,
+                filter: "[UserId] IS NOT NULL AND [AdId] IS NOT NULL");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

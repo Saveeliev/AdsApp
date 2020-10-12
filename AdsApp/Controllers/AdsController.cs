@@ -1,4 +1,5 @@
 ﻿using AdsApp.Extensions;
+using AdsApp.Models;
 using AdsApp.Models.ViewModels;
 using AdsApp.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -66,25 +67,36 @@ namespace AdsApp.Controllers
             if (!ModelState.IsValid)
                 return View();
 
-            var result = await _adService.UpdateAdvertisement(adId, adText, User.Claims.GetUserId());
+            await _adService.UpdateAdvertisement(adId, adText, User.Claims.GetUserId());
 
             return RedirectToAction("Index");
         }
 
         [Authorize]
-        [HttpGet]
+        [HttpPost]
         public async Task<IActionResult> Like(Guid adId)
         {
-            var result = await _adService.Like(adId, User.Claims.GetUserId());
+            await _adService.Like(adId, User.Claims.GetUserId());
 
             return RedirectToAction("Index");
         }
 
         [Authorize]
-        [HttpGet]
+        [HttpPost]
         public async Task<IActionResult> DisLike(Guid adId)
         {
-            var result = await _adService.DisLike(adId, User.Claims.GetUserId());
+            await _adService.DisLike(adId, User.Claims.GetUserId());
+
+            return RedirectToAction("Index");
+        }
+
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> Delete(Guid adId)
+        {
+            var userId = User.Claims.GetUserId();
+
+            await _adService.Delete(adId, userId);
 
             return RedirectToAction("Index");
         }

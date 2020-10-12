@@ -12,6 +12,7 @@ namespace AdsApp.Services
         Task<IActionResult> UpdateAdvertisement(Guid adId, string adText, Guid userId);
         Task<IActionResult> Like(Guid adId, Guid userId);
         Task<IActionResult> DisLike(Guid adId, Guid userId);
+        Task<IActionResult> Delete(Guid adId, Guid userId);
         AdDto GetAd(Guid adId);
         List<AdDto> GetAds();
     }

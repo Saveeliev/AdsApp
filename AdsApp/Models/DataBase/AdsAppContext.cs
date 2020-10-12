@@ -21,8 +21,18 @@ namespace AdsApp.Models
                 .IsUnique();
 
             modelBuilder.Entity<AdDb>()
-            .Property(p => p.Number)
-            .ValueGeneratedOnAdd();
+                .Property(p => p.Number)
+                .ValueGeneratedOnAdd();
+
+            modelBuilder.Entity<RatingDb>()
+                .HasOne(p => p.User)
+                .WithMany(t => t.Ratings)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<RatingDb>()
+                .HasOne(p => p.Ad)
+                .WithMany(t => t.Ratings)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

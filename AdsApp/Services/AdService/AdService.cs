@@ -87,6 +87,18 @@ namespace AdsApp.Services
             return new OkResult();
         }
 
+        public async Task<IActionResult> Delete(Guid adId, Guid userId)
+        {
+            var currentAd = _dataProvider.Get<AdDb>(i => i.Id == adId).SingleOrDefault();
+
+            if (currentAd.UserId != userId)
+                return null;
+
+            await _dataProvider.Delete(currentAd);
+
+            return new OkResult();
+        }
+
         public AdDto GetAd(Guid adId)
         {
             var ad = _dataProvider.Get<AdDb>(i => i.Id == adId)
