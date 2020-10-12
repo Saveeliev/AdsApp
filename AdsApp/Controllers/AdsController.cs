@@ -70,5 +70,23 @@ namespace AdsApp.Controllers
 
             return RedirectToAction("Index");
         }
+
+        [Authorize]
+        [HttpGet]
+        public async Task<IActionResult> Like(Guid adId)
+        {
+            var result = await _adService.Like(adId, User.Claims.GetUserId());
+
+            return RedirectToAction("Index");
+        }
+
+        [Authorize]
+        [HttpGet]
+        public async Task<IActionResult> DisLike(Guid adId)
+        {
+            var result = await _adService.DisLike(adId, User.Claims.GetUserId());
+
+            return RedirectToAction("Index");
+        }
     }
 }

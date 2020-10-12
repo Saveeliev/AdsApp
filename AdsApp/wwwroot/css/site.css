@@ -225,18 +225,26 @@
         background-color: #DDDDDD;
         grid-row: 2 / 3;
         grid-column: 2 / 3;
+        padding-top: 10px;
     }
 
     .ad .dataContainer {
         background-color: #DDDDDD;
         grid-row: 2 / 3;
         grid-column: 3 / 4;
+        padding-top: 10px;
     }
 
     .ad .ratingContainer {
         background-color: #DDDDDD;
         grid-row: 2 / 3;
         grid-column: 4 / 5;
+        display: flex;
+        padding: 10px;
+    }
+
+    .ad .ratingContainer div {
+        margin-right: 10px;
     }
 
 .addAdvertisementContainer {

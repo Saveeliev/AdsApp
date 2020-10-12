@@ -6,6 +6,8 @@ namespace AdsApp.Models
     {
         public Guid Id { get; set; }
 
+        public bool IsLiked { get; set; }
+
         public Guid? UserId { get; set; }
         public UserDb User { get; set; }
 

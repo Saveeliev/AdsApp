@@ -1,7 +1,9 @@
-﻿@model List<AdsApp.Models.ViewModels.AdDto>
+﻿@using AdsApp.Extensions;
+@model List<AdsApp.Models.ViewModels.AdDto>
 @{
     ViewData["Title"] = "Home";
 }
+@{Guid userId = User.Claims.GetUserId();}
 
 <div id="modalWindow" class="modalWindow"></div>
 
@@ -11,36 +13,60 @@
 
         @foreach (var ad in Model)
         {
-        <div class="ad">
-            <div class="imgContainer">
+            <div class="ad">
+                <div class="imgContainer">
 
-            </div>
-            <div class="titleContainer">
-                @ad.Text
-            </div>
-            <div class="adButtonsContainer">
+                </div>
+                <div class="titleContainer">
+                    @ad.Text
+                </div>
+                <div class="adButtonsContainer">
 
-                <form method="get" action="~/Ads/UpdateAdvertisement">
-                    <input type="hidden" value="@ad.Id" name="adId" />
-                    <input type="submit" value="U"/>
-                </form>
+                    @if (ad.UserId == userId)
+                    {
+                        <form method="get" action="~/Ads/UpdateAdvertisement">
+                            <input type="hidden" value="@ad.Id" name="adId" />
+                            <input type="submit" value="U" />
+                        </form>
+                    }
 
+                </div>
+                <div class="userNameContainer">
+                    @ad.UserName
+                </div>
+                <div class="dataContainer">
+                    @ad.CreatedDate.ToString("M")
+                </div>
+                <div class="ratingContainer">
+
+                    <div>
+
+                        <form method="get" action="~/Ads/Like">
+                            <input type="hidden" value="@ad.Id" name="adId" />
+                            <input type="submit" value="L" />
+                        </form>
+
+                    </div>
+
+                    <div>
+                        @ad.Ratings.Where(i => i.IsLiked == true).Count()
+                    </div>
+
+                    <div>
+                        <form method="get" action="~/Ads/DisLike">
+                            <input type="hidden" value="@ad.Id" name="adId" />
+                            <input type="submit" value="D" />
+                        </form>
+                    </div>
+
+                    <div>
+                        @ad.Ratings.Where(i => i.IsLiked == false).Count()
+                    </div>
+
+                </div>
             </div>
-            <div class="userNameContainer">
-                
-            </div>
-            <div class="dataContainer">
-                @ad.CreatedDate
-            </div>
-            <div class="ratingContainer">
-                <form method="get" action="~/Ads/Like">
-                    <input type="hidden" value="@ad.Id" name="adId" />
-                    <input type="submit" value="L" />
-                </form>
-            </div>
-        </div>
         }
-        
+
     </div>
 
 </div>

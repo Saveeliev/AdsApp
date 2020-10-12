@@ -38,6 +38,55 @@ namespace AdsApp.Services
             return new OkResult();
         }
 
+        public async Task<IActionResult> Like(Guid adId, Guid userId)
+        {
+            var isLiked = _dataProvider.Get<RatingDb>(i => i.AdId == adId && i.UserId == userId).SingleOrDefault();
+
+            if(isLiked == null)
+            {
+                var like = new RatingDb { AdId = adId, UserId = userId, IsLiked = true };
+                await _dataProvider.Insert(like);
+            }
+            else
+            {
+                if (isLiked.IsLiked == true)
+                    await _dataProvider.Delete(isLiked);
+
+                else
+                {
+                    isLiked.IsLiked = true;
+                    await _dataProvider.Update(isLiked);
+                }
+
+            }
+
+            return new OkResult();
+        }
+
+        public async Task<IActionResult> DisLike(Guid adId, Guid userId)
+        {
+            var isLiked = _dataProvider.Get<RatingDb>(i => i.AdId == adId && i.UserId == userId).SingleOrDefault();
+
+            if (isLiked == null)
+            {
+                var disLike = new RatingDb { AdId = adId, UserId = userId, IsLiked = false };
+                await _dataProvider.Insert(disLike);
+            }
+            else
+            {
+                if (isLiked.IsLiked == false)
+                    await _dataProvider.Delete(isLiked);
+
+                else
+                {
+                    isLiked.IsLiked = false;
+                    await _dataProvider.Update(isLiked);
+                }
+            }
+
+            return new OkResult();
+        }
+
         public AdDto GetAd(Guid adId)
         {
             var ad = _dataProvider.Get<AdDb>(i => i.Id == adId)
@@ -46,9 +95,11 @@ namespace AdsApp.Services
                     Id = i.Id,
                     Text = i.Text,
                     CreatedDate = i.CreatedDate,
-                    UserId = i.UserId
+                    UserId = i.UserId,
+                    Ratings = i.Ratings,
+                    UserName = i.User.Name
                 }).SingleOrDefault();
-
+            
             return ad;
         }
 
@@ -61,7 +112,9 @@ namespace AdsApp.Services
                     Text = i.Text,
                     CreatedDate = i.CreatedDate,
                     Image = i.Image,
-                    UserId = i.UserId
+                    UserId = i.UserId,
+                    Ratings = i.Ratings,
+                    UserName = i.User.Name
                 }).OrderByDescending(i => i.CreatedDate).ToList();
 
             return ads;
