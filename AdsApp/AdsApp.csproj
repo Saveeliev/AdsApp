@@ -5,17 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Services\Новая папка1\**" />
-    <Content Remove="Services\Новая папка1\**" />
-    <EmbeddedResource Remove="Services\Новая папка1\**" />
-    <None Remove="Services\Новая папка1\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Remove="Migrations\20201012155111_Init.cs" />
-    <Compile Remove="Migrations\20201012155111_Init.Designer.cs" />
-    <Compile Remove="Migrations\20201012183916_2.cs" />
-    <Compile Remove="Migrations\20201012183916_2.Designer.cs" />
+    <Compile Remove="Services\**" />
+    <Content Remove="Services\**" />
+    <EmbeddedResource Remove="Services\**" />
+    <None Remove="Services\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,6 +23,12 @@
     </PackageReference>
     <PackageReference Include="PagedList.Core.Mvc" Version="3.0.0" />
     <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DataBase\DataBase.csproj" />
+    <ProjectReference Include="..\DTO\DTO.csproj" />
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

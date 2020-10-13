@@ -1,10 +1,8 @@
 ﻿using AdsApp.Extensions;
-using AdsApp.Models;
-using AdsApp.Models.ViewModels;
-using AdsApp.Services;
+using DTO;
+using Infrastructure.Services.AdService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using PagedList.Core;
 using System;
 using System.Threading.Tasks;
 

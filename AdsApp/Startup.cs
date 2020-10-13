@@ -1,19 +1,20 @@
-using AdsApp.Models;
-using AdsApp.Services;
+using DataBase;
+using DTO;
+using DTO.Request;
+using FluentValidation;
+using FluentValidation.AspNetCore;
+using Infrastructure.Services.AdService;
+using Infrastructure.Services.DataProvider;
+using Infrastructure.Services.UserService;
+using Infrastructure.Services.Validations;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
-using FluentValidation;
-using AdsApp.DTO;
-using AdsApp.Validations;
-using AdsApp.Models.ViewModels;
-using AdsApp.Models.DTO;
 
 namespace AdsApp
 {

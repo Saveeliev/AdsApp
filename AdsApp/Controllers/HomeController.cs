@@ -1,4 +1,4 @@
-﻿using AdsApp.Models;
+﻿using DTO;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;

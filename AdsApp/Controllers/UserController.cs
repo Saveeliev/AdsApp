@@ -1,19 +1,8 @@
-﻿using AdsApp.DTO;
-using AdsApp.Models;
-using AdsApp.Models.DTO;
-using AdsApp.Models.ViewModels;
-using AdsApp.Services;
+﻿using DTO.Request;
+using Infrastructure.Services.UserService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.IdentityModel.Tokens;
 using System;
-using System.Collections.Generic;
-using System.Data;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace AdsApp.Controllers

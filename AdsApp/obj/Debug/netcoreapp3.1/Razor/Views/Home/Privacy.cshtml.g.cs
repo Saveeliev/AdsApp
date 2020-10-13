@@ -19,15 +19,8 @@ using AdsApp;
 #line default
 #line hidden
 #nullable disable
-#nullable restore
-#line 2 "C:\Users\Church\source\repos\AdsApp\AdsApp\Views\_ViewImports.cshtml"
-using AdsApp.Models;
-
-#line default
-#line hidden
-#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"b2e727a2b99b43a637dc1d22a35f1fcc7b2076d7", @"/Views/Home/Privacy.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"7f1fbe7fda1975ba9d492e04f47631c77a4dae92", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"06bc30f69de11f9b1063bc9d3ffa226265c67687", @"/Views/_ViewImports.cshtml")]
     public class Views_Home_Privacy : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         #pragma warning disable 1998

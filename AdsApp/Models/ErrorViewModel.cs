@@ -1,6 +1,6 @@
 using System;
 
-namespace AdsApp.Models
+namespace AdsApp
 {
     public class ErrorViewModel
     {

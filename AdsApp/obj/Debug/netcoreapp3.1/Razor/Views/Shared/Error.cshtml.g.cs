@@ -19,15 +19,8 @@ using AdsApp;
 #line default
 #line hidden
 #nullable disable
-#nullable restore
-#line 2 "C:\Users\Church\source\repos\AdsApp\AdsApp\Views\_ViewImports.cshtml"
-using AdsApp.Models;
-
-#line default
-#line hidden
-#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"25bfd9ca9c43e06cee6d098f186c3f4cca31039c", @"/Views/Shared/Error.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"7f1fbe7fda1975ba9d492e04f47631c77a4dae92", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"06bc30f69de11f9b1063bc9d3ffa226265c67687", @"/Views/_ViewImports.cshtml")]
     public class Views_Shared_Error : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<ErrorViewModel>
     {
         #pragma warning disable 1998
