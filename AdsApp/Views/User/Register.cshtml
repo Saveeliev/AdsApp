@@ -8,44 +8,46 @@
 @section Header {}
 
 <div class="mainContainer">
-    <div class="registerContainer">
+    <div class="login-main">
+        <div class="registerContainer">
 
-        <span class="errorMessage">@errorMessage</span>
+            <span class="errorMessage">@errorMessage</span>
 
-        <form method="post" action="~/User/Register">
+            <form method="post" action="~/User/Register">
 
-            <label>
-                Login<span class="validationLabel"> * </span>
-                <span class="validationLabel" asp-validation-for="Login"></span>
-            </label>
+                <label>
+                    Login<span class="validationLabel"> * </span>
+                    <span class="validationLabel" asp-validation-for="Login"></span>
+                </label>
 
-            <input type="text" asp-for="Login" class="enterData" />
+                <input type="text" asp-for="Login" class="enterData" />
 
-            <label>
-                Name<span class="validationLabel"> * </span>
-                <span class="validationLabel" asp-validation-for="Name"></span>
-            </label>
+                <label>
+                    Name<span class="validationLabel"> * </span>
+                    <span class="validationLabel" asp-validation-for="Name"></span>
+                </label>
 
-            <input type="text" asp-for="Name" class="enterData" />
+                <input type="text" asp-for="Name" class="enterData" />
 
-            <label>
-                Password<span class="validationLabel"> * </span>
-                <span class="validationLabel" asp-validation-for="Password"></span>
-            </label>
+                <label>
+                    Password<span class="validationLabel"> * </span>
+                    <span class="validationLabel" asp-validation-for="Password"></span>
+                </label>
 
-            <input type="password" asp-for="Password" class="enterData" />
+                <input type="password" asp-for="Password" class="enterData" />
 
-            <label>
-                Confirm Password<span class="validationLabel"> * </span>
-                <span class="validationLabel" asp-validation-for="ConfirmPassword"></span>
-            </label>
+                <label>
+                    Confirm Password<span class="validationLabel"> * </span>
+                    <span class="validationLabel" asp-validation-for="ConfirmPassword"></span>
+                </label>
 
-            <input type="password" asp-for="ConfirmPassword" class="enterData" />
+                <input type="password" asp-for="ConfirmPassword" class="enterData" />
 
-            <div class="buttonsContainer">
-                <input type="submit" class="buttonToEnter" value="Enter" />
-                <a href="~/User/Login" class="buttonToCancel">Cancel</a>
-            </div>
-        </form>
+                <div class="buttonsContainer">
+                    <input type="submit" class="buttonToEnter" value="Enter" />
+                    <a href="~/User/Login" class="buttonToCancel">Cancel</a>
+                </div>
+            </form>
+        </div>
     </div>
 </div>

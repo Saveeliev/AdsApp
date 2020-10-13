@@ -9,7 +9,7 @@ namespace Infrastructure.Services.AdService
     public interface IAdService
     {
         Task AddAdvertisement(AdDto ad, Guid userId);
-        Task<IActionResult> UpdateAdvertisement(Guid adId, string adText, Guid userId);
+        Task<IActionResult> UpdateAdvertisement(Guid adId, string adText, string adTitle, Guid userId);
         Task<IActionResult> Like(Guid adId, Guid userId);
         Task<IActionResult> DisLike(Guid adId, Guid userId);
         Task<IActionResult> Delete(Guid adId, Guid userId);

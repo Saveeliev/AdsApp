@@ -21,12 +21,12 @@ namespace Infrastructure.Services.AdService
 
         public async Task AddAdvertisement(AdDto ad, Guid userId)
         {
-            var currentAd = new AdDb { CreatedDate = DateTime.Now, Text = ad.Text, UserId = userId };
+            var currentAd = new AdDb { CreatedDate = DateTime.Now, Title = ad.Title, Text = ad.Text, UserId = userId };
 
             await _dataProvider.Insert(currentAd);
         }
 
-        public async Task<IActionResult> UpdateAdvertisement(Guid adId, string adText, Guid userId)
+        public async Task<IActionResult> UpdateAdvertisement(Guid adId, string adText, string adTitle, Guid userId)
         {
             var currentAd = _dataProvider.Get<AdDb>(i => i.Id == adId).SingleOrDefault();
 
@@ -34,6 +34,7 @@ namespace Infrastructure.Services.AdService
                 return null;
 
             currentAd.Text = adText;
+            currentAd.Title = adTitle;
 
             await _dataProvider.Update(currentAd);
 
@@ -108,6 +109,7 @@ namespace Infrastructure.Services.AdService
                 {
                     Id = i.Id,
                     Text = i.Text,
+                    Title = i.Title,
                     CreatedDate = i.CreatedDate,
                     UserId = i.UserId,
                     Ratings = i.Ratings,
@@ -124,6 +126,7 @@ namespace Infrastructure.Services.AdService
                 {
                     Id = i.Id,
                     Text = i.Text,
+                    Title = i.Title,
                     CreatedDate = i.CreatedDate,
                     Image = i.Image,
                     UserId = i.UserId,

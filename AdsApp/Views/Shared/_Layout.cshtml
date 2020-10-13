@@ -17,25 +17,27 @@
         else
         {
             <div class="header">
+                <div class="header-include">
 
-                <div class="header-left">
+                    <div class="header-left">
 
-                    <div>
-                        <a class="linkToHomePage" href="/Ads">Home</a>
+                        <div>
+                            <a class="linkToHomePage" href="/Ads">Home</a>
+                        </div>
+
+                        <div>
+                            <a href="/Ads/Addadvertisement">Add advertisement</a>
+                        </div>
+
                     </div>
 
-                    <div>
-                        <a href="/Ads/Addadvertisement">Add advertisement</a>
+                    <div class="header-right">
+
+                        <form class="logOutForm" method="post" asp-controller="User" asp-action="Logout">
+                            <input class="enter" type="submit" value="Log out" />
+                        </form>
+
                     </div>
-
-                </div>
-
-                <div class="header-right">
-
-                    <form class="logOutForm" method="post" asp-controller="User" asp-action="Logout">
-                        <input class="enter" type="submit" value="Log out" />
-                    </form>
-
                 </div>
             </div>
         }

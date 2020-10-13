@@ -13,9 +13,15 @@
 
             <div>
 
-                <label class="title">Add new advertisement <span class="validationLabel" asp-validation-for="Text"></span></label>
 
-                <textarea asp-for="Text" class="enterData"></textarea>
+
+                <label class="title">Title <span class="validationLabel" asp-validation-for="Title"></span></label>
+
+                <input type="text" class="enterData enterTitle" asp-for="Title" />
+
+                <label class="title">Text <span class="validationLabel" asp-validation-for="Text"></span></label>
+
+                <textarea asp-for="Text" class="enterData enterText"></textarea>
 
                 <div class="buttonsContainer">
                     <input type="submit" class="buttonToEnter" value="Enter" />

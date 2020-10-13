@@ -13,9 +13,14 @@
 
             <div>
 
-                <label class="title">Update advertisement <span class="validationLabel" asp-validation-for="Text"></span></label>
+                <label class="title">Title <span class="validationLabel" asp-validation-for="Title"></span></label>
 
-                <textarea class="enterData" name="adText">@ViewData["AdText"]</textarea>
+                <input type="text" class="enterData enterTitle" name="adTitle" value="@ViewData["AdTitle"]" />
+
+                <label class="title">Text <span class="validationLabel" asp-validation-for="Text"></span></label>
+
+                <textarea class="enterData enterText" name="adText">@ViewData["AdText"]</textarea>
+
                 <input type="hidden" name="adId" value="@ViewData["AdId"]" />
 
                 <div class="buttonsContainer">

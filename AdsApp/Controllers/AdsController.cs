@@ -41,6 +41,7 @@ namespace AdsApp.Controllers
 
             ViewData["AdId"] = adId.ToString();
             ViewData["AdText"] = ad.Text;
+            ViewData["AdTitle"] = ad.Title;
             return View();
         }
 
@@ -60,12 +61,12 @@ namespace AdsApp.Controllers
 
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> UpdateAdvertisement(string adText, Guid adId)
+        public async Task<IActionResult> UpdateAdvertisement(string adTitle, string adText, Guid adId)
         { 
             if (!ModelState.IsValid)
                 return View();
 
-            await _adService.UpdateAdvertisement(adId, adText, User.Claims.GetUserId());
+            await _adService.UpdateAdvertisement(adId, adText, adTitle, User.Claims.GetUserId());
 
             return RedirectToAction("Index");
         }

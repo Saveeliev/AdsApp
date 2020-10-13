@@ -9,27 +9,29 @@
 @section Header {}
 
 <div class="mainContainer">
-    <div class="loginContainer">
+    <div class="login-main">
+        <div class="loginContainer">
 
-        <span class="errorMessage">@errorMessage</span>
-           
-        <form method="post" action="~/User/Login">
-            <label>
-                Login <span class="validationLabel" asp-validation-for="Login"></span>
-            </label>
+            <span class="errorMessage">@errorMessage</span>
 
-            <input type="text" asp-for="Login" class="enterData" />
+            <form method="post" action="~/User/Login">
+                <label>
+                    Login <span class="validationLabel" asp-validation-for="Login"></span>
+                </label>
 
-            <label>
-                Password <span class="validationLabel" asp-validation-for="Password"></span>
-            </label>
+                <input type="text" asp-for="Login" class="enterData" />
 
-            <input type="password" asp-for="Password" class="enterData" />
+                <label>
+                    Password <span class="validationLabel" asp-validation-for="Password"></span>
+                </label>
 
-            <div class="buttonsContainer">
-                <input type="submit" class="buttonToEnter" value="Enter" />
-                <a href="~/User/Register" class="buttonToCancel">Register</a>
-            </div>
-        </form>
+                <input type="password" asp-for="Password" class="enterData" />
+
+                <div class="buttonsContainer">
+                    <input type="submit" class="buttonToEnter" value="Enter" />
+                    <a href="~/User/Register" class="buttonToCancel">Register</a>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
