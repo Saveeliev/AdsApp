@@ -99,5 +99,14 @@ namespace AdsApp.Controllers
 
             return RedirectToAction("Index");
         }
+
+        [Authorize]
+        [HttpGet]
+        public IActionResult SinglePage(Guid adId)
+        {
+            var ad = _adService.GetAd(adId);
+
+            return View(ad);
+        }
     }
 }

@@ -9,11 +9,9 @@
 
     <div class="addAdvertisementContainer">
 
-        <form method="post" action="~/Ads/AddAdvertisement">
+        <form method="post" action="~/Ads/AddAdvertisement"  enctype="multipart/form-data">
 
             <div>
-
-
 
                 <label class="title">Title <span class="validationLabel" asp-validation-for="Title"></span></label>
 
@@ -22,6 +20,10 @@
                 <label class="title">Text <span class="validationLabel" asp-validation-for="Text"></span></label>
 
                 <textarea asp-for="Text" class="enterData enterText"></textarea>
+
+                <label class="title">Image <span class="validationLabel" asp-validation-for="Image"></span></label>
+
+                <input type="file" class="enterData" asp-for="Image" />
 
                 <div class="buttonsContainer">
                     <input type="submit" class="buttonToEnter" value="Enter" />

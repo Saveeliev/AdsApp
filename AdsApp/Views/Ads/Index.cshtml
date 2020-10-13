@@ -18,7 +18,10 @@
 
                 </div>
                 <div class="titleContainer">
-                    @ad.Title
+                    <form method="get" action="~/Ads/SinglePage">
+                        <input type="hidden" value="@ad.Id" name="adId" />
+                        <input type="submit" value="@ad.Title" />
+                    </form>
                 </div>
                 <div class="adButtonsContainer">
 

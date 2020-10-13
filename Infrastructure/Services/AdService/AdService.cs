@@ -5,6 +5,7 @@ using Infrastructure.Services.DataProvider;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -21,7 +22,15 @@ namespace Infrastructure.Services.AdService
 
         public async Task AddAdvertisement(AdDto ad, Guid userId)
         {
-            var currentAd = new AdDb { CreatedDate = DateTime.Now, Title = ad.Title, Text = ad.Text, UserId = userId };
+            byte[] image = null;
+
+            if (ad.Image != null)
+            {
+                using var binaryReader = new BinaryReader(ad.Image.OpenReadStream());
+                image = binaryReader.ReadBytes((int)ad.Image.Length);
+            }
+
+            var currentAd = new AdDb { CreatedDate = DateTime.Now, Image = image, Title = ad.Title, Text = ad.Text, UserId = userId };
 
             await _dataProvider.Insert(currentAd);
         }
@@ -128,7 +137,6 @@ namespace Infrastructure.Services.AdService
                     Text = i.Text,
                     Title = i.Title,
                     CreatedDate = i.CreatedDate,
-                    Image = i.Image,
                     UserId = i.UserId,
                     Ratings = i.Ratings,
                     UserName = i.User.Name

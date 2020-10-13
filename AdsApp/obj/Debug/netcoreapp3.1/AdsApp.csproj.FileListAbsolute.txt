@@ -97,3 +97,4 @@ C:\Users\Church\source\repos\AdsApp\AdsApp\obj\Debug\netcoreapp3.1\AdsApp.csproj
 C:\Users\Church\source\repos\AdsApp\AdsApp\obj\Debug\netcoreapp3.1\staticwebassets\AdsApp.StaticWebAssets.Manifest.cache
 C:\Users\Church\source\repos\AdsApp\AdsApp\obj\Debug\netcoreapp3.1\staticwebassets\AdsApp.StaticWebAssets.xml
 C:\Users\Church\source\repos\AdsApp\AdsApp\obj\Debug\netcoreapp3.1\AdsApp.genruntimeconfig.cache
+C:\Users\Church\source\repos\AdsApp\AdsApp\obj\Debug\netcoreapp3.1\Razor\Views\Ads\SinglePage.cshtml.g.cs
