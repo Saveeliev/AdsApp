@@ -2,6 +2,7 @@
 using DataBase.Models;
 using DTO.ActionResult;
 using DTO.Request;
+using Infrastructure.Options;
 using Infrastructure.Services.DataProvider;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -24,14 +25,19 @@ namespace Infrastructure.Services.UserService
             _dataProvider = dataProvider ?? throw new ArgumentNullException(nameof(dataProvider));
         }
 
-        public async Task<IActionResult> Register(RegisterRequest request)
+        public async Task Register(RegisterRequest request)
         {
+            if (request is null)
+            {
+                throw new ArgumentNullException(nameof(request));
+            }
+
             using var transaction = _dataProvider.CreateTransaction(IsolationLevel.Serializable);
 
             var user = _dataProvider.Get<UserDb>(i => i.Login == request.Login.ToLower()).SingleOrDefault();
            
             if (user != null)
-                return null;
+                throw new Exception("User is already exist");
 
             var hash = BCrypt.Net.BCrypt.HashPassword(request.Password);
 
@@ -45,12 +51,15 @@ namespace Infrastructure.Services.UserService
             await _dataProvider.Insert(userDb);
 
             transaction.Commit();
-
-            return new EmptyResult();
         }
 
         public LoginResult Login(LoginRequest request)
         {
+            if (request is null)
+            {
+                throw new ArgumentNullException(nameof(request));
+            }
+
             var loginLower = request.Login.ToLower();
 
             var user = _dataProvider.Get<UserDb>(i => i.Login == loginLower).SingleOrDefault();

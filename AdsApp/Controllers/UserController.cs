@@ -30,13 +30,16 @@ namespace AdsApp.Controllers
         public async Task<IActionResult> Register(RegisterRequest request)
         {
             if (!ModelState.IsValid)
-                return View("~/Views/User/Register.cshtml");
+                return View();
 
-            var result = await _userService.Register(request);
-
-            if (result == null)
+            try
             {
-                ViewData["ErrorMessage"] = "User is already exist";
+                await _userService.Register(request);
+                
+            }
+            catch(Exception ex)
+            {
+                ViewData["ErrorMessage"] = ex.Message;
                 return View();
             }
 

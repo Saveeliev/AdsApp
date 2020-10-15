@@ -7,7 +7,7 @@ namespace Infrastructure.Services.UserService
 {
     public interface IUserService
     {
-        Task<IActionResult> Register(RegisterRequest request);
+        Task Register(RegisterRequest request);
         LoginResult Login(LoginRequest request);
     }
 }

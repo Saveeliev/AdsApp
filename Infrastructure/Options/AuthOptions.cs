@@ -1,7 +1,7 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
-namespace AdsApp
+namespace Infrastructure.Options
 {
     public class AuthOptions
     {

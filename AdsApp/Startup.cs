@@ -3,6 +3,7 @@ using DTO;
 using DTO.Request;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Infrastructure.Options;
 using Infrastructure.Services.AdService;
 using Infrastructure.Services.DataProvider;
 using Infrastructure.Services.UserService;

@@ -3,37 +3,39 @@
 }
 @model DTO.AdDto
 
-<div asp-validation-summary="ModelOnly"></div>
+    <div id="modalWindow" class="modalWindow"></div>
 
-<div class="mainContainer">
+    <div asp-validation-summary="ModelOnly"></div>
 
-    <div class="addAdvertisementContainer">
+    <div class="mainContainer">
 
-        <form method="post" action="~/Ads/AddAdvertisement"  enctype="multipart/form-data">
+        <div class="addAdvertisementContainer">
 
-            <div>
+            <form method="post" action="~/Ads/AddAdvertisement" enctype="multipart/form-data">
 
-                <label class="title">Title <span class="validationLabel" asp-validation-for="Title"></span></label>
+                <div>
 
-                <input type="text" class="enterData enterTitle" asp-for="Title" />
+                    <label class="title">Title <span class="validationLabel" asp-validation-for="Title"></span></label>
 
-                <label class="title">Text <span class="validationLabel" asp-validation-for="Text"></span></label>
+                    <input type="text" class="enterData enterTitle" asp-for="Title" />
 
-                <textarea asp-for="Text" class="enterData enterText"></textarea>
+                    <label class="title">Text <span class="validationLabel" asp-validation-for="Text"></span></label>
 
-                <label class="title">Image <span class="validationLabel" asp-validation-for="Image"></span></label>
+                    <textarea asp-for="Text" class="enterData enterText"></textarea>
 
-                <input type="file" class="enterData" asp-for="Image" />
+                    <label class="title">Image <span class="validationLabel" asp-validation-for="Image"></span></label>
 
-                <div class="buttonsContainer">
-                    <input type="submit" class="buttonToEnter" value="Enter" />
-                    <a href="~/Ads/Index" class="buttonToCancel">Cancel</a>
+                    <input type="file" class="enterData" asp-for="Image" />
+
+                    <div class="buttonsContainer">
+                        <input type="submit" class="buttonToEnter" value="Enter" />
+                        <a href="~/Ads/Index" class="buttonToCancel">Cancel</a>
+                    </div>
+
                 </div>
 
-            </div>
+            </form>
 
-        </form>
+        </div>
 
     </div>
-
-</div>

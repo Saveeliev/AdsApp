@@ -1,5 +1,3 @@
-using System;
-
 namespace AdsApp
 {
     public class ErrorViewModel

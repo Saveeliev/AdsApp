@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace DTO.ActionResult
+﻿namespace DTO.ActionResult
 {
-    public class LoginResult
+    public class LoginResult : Result
     {
         public string Token { get; set; }
     }

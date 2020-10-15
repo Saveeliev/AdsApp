@@ -15,7 +15,7 @@
 
                 <label class="title">Title <span class="validationLabel" asp-validation-for="Title"></span></label>
 
-                <input type="text" class="enterData enterTitle" name="adTitle" value="@ViewData["AdTitle"]" />
+                <input type="text" class="enterData enterTitle" asp-for="Title" name="adTitle" value="@ViewData["AdTitle"]" />
 
                 <label class="title">Text <span class="validationLabel" asp-validation-for="Text"></span></label>
 
