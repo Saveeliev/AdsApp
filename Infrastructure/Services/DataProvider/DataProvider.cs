@@ -30,9 +30,16 @@ namespace Infrastructure.Services.DataProvider
             await _context.SaveChangesAsync();
         }
 
-        public IQueryable<T> Get<T>(Expression<Func<T, bool>> predicate) where T : class
+        public IQueryable<T> Get<T>(Expression<Func<T, bool>> predicate = null) where T : class
         {
-            return _context.Set<T>().Where(predicate);
+            var query = _context.Set<T>().AsQueryable();
+
+            if (predicate != null)
+            {
+                query = query.Where(predicate);
+            }
+
+            return query;
         }
 
         public async Task Delete<T>(T model) where T : class

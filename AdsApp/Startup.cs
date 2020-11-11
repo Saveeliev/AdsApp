@@ -1,13 +1,17 @@
+using AdsApp.MiddleWares;
+using AutoMapper;
 using DataBase;
-using DTO;
+using DTO.AdRequest;
 using DTO.Request;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Infrastructure.Helpers;
 using Infrastructure.Options;
 using Infrastructure.Services.AdService;
 using Infrastructure.Services.DataProvider;
 using Infrastructure.Services.UserService;
 using Infrastructure.Services.Validations;
+using Infrastructure.Validations;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -30,6 +34,9 @@ namespace AdsApp
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<StaticFilesOptions>(Configuration.GetSection(nameof(StaticFilesOptions)));
+            services.AddAutoMapper(typeof(Startup));
+
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<AdsAppContext>(options => options.UseSqlServer(connection));
             services.AddControllersWithViews();
@@ -59,9 +66,11 @@ namespace AdsApp
             services.AddScoped<IDataProvider, DataProvider>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IAdService, AdService>();
+            services.AddTransient<IImageHelper, ImageHelper>();
             services.AddTransient<IValidator<RegisterRequest>, RegisterRequestValidator>();
             services.AddTransient<IValidator<LoginRequest>, LoginRequestValidator>();
-            services.AddTransient<IValidator<AdDto>, AdValidator>();
+            services.AddTransient<IValidator<AdvertisementRequest>, AdValidator>();
+            services.AddTransient<IValidator<AddAdvertisementRequest>, AddAdvertisementValidator>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -80,6 +89,8 @@ namespace AdsApp
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseMiddleware<ImageMiddleWare>();
 
             app.UseAuthentication();
             app.UseAuthorization();

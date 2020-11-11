@@ -44,18 +44,52 @@
 
     </header>
 
+    <div id="result">
+
+        <div class="popup" onclick="myFunction()">
+            <span class="popuptext" id="myPopup">Popup text...</span>
+        </div>
+
+    </div>
+
     <div>
-        <main role="main">
-            @RenderBody()
-        </main>
+
+        @RenderBody()
+
     </div>
 
     <footer>
+
+        <div class="footer">
+
+        </div>
+
     </footer>
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery.unobtrusive-ajax/jquery.unobtrusive-ajax.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    @RenderSection("Scripts", required: false)
+    @RenderSection("scripts", false);
+
+    <script>
+
+        $(document).ready(function () {
+
+            var errorMessage = "@ViewBag.Message";
+
+            if (errorMessage.length != 0) {
+
+                var popup = document.getElementById("myPopup");
+                popup.classList.toggle("show");
+                popup.innerHTML = errorMessage;
+
+                setTimeout(function () { popup.classList.toggle("show"); }, 4000);
+            }
+
+        });
+
+    </script>
+
 </body>
 </html>

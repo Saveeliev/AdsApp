@@ -1,0 +1,15 @@
+﻿@model AdsApp.Models.PartialModel
+
+<div id="modalWindow">
+
+    <div class="modalWindow">
+
+        <div class="buttontoCloseContainer">
+            <a href="#" onclick="clearBox('result')"><img src="@Url.Content("~/icons/close.png")" /></a>
+        </div>
+
+        @Html.Partial(Model.PartialViewName, Model.Model)
+
+    </div>
+
+</div>

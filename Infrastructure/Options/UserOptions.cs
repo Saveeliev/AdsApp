@@ -6,6 +6,7 @@ namespace Infrastructure.Options
 {
     public class UserOptions
     {
-        public const int AdCountLimit = 2;
+        public const int AdCountLimit = 20;
+        public const int PageAdsCount = 3;
     }
 }

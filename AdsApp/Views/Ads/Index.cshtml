@@ -1,100 +1,33 @@
 ﻿@using AdsApp.Extensions;
-@model List<DTO.AdDto>
+@using AdsApp.Helpers;
+@model AdsApp.Models.IndexViewModel
 @{
     ViewData["Title"] = "Home";
 }
 @{Guid userId = User.Claims.GetUserId();}
 
-<div id="modalWindow" class="modalWindow"></div>
+@Html.Partial("SearchPartialView");
 
 <div class="mainContainer">
 
-    <div class="userInterfaceContainer">
+    <div class="adsContainer">
 
-        @foreach (var ad in Model)
-        {
-            <div class="ad">
-                <div class="imgContainer">
-                    
-                </div>
-                <div class="titleContainer">
-                    <form method="get" action="~/Ads/SinglePage">
-                        <input type="hidden" value="@ad.Id" name="adId" />
-                        <input type="submit" value="@ad.Title" />
-                    </form>
-                </div>
-                <div class="adButtonsContainer">
+        @Html.Partial("AdsPartialView", Model.Ads)
 
-                    @if (ad.UserId == userId)
-                    {
-                        <div>
-                            <form method="get" action="~/Ads/UpdateAdvertisement">
-                                <input type="hidden" value="@ad.Id" name="adId" />
-                                <input type="submit" value="U" />
-                            </form>
-                        </div>
+        <div class="pagination">
 
-                        <div>
-                            <form method="post" action="~/Ads/Delete">
-                                <input type="hidden" value="@ad.Id" name="adId" />
-                                <input type="submit" value="D" />
-                            </form>
-                        </div>
-                    }
+            @Html.PageLinks(Model.PageViewModel, x => Url.Action("Index", new
+               {
+                   SearchText = Model.SearchRequest.SearchText,
+                   SearchDate = Model.SearchRequest.SearchDate,
+                   SortDate = Model.SearchRequest.SortDate,
+                   SortRating = Model.SearchRequest.SortRating,
+                   SortNumber = Model.SearchRequest.SortNumber,
+                   currentPageNumber = x
+               }))
 
-                </div>
-                <div class="userNameContainer">
-                    @ad.UserName
-                </div>
-                <div class="dataContainer">
-                    @ad.CreatedDate.ToString("M")
-                </div>
-                <div class="ratingContainer">
-
-                    <div>
-
-                        <form method="post" action="~/Ads/Like">
-                            <input type="hidden" value="@ad.Id" name="adId" />
-                            <input type="submit" value="L" />
-                        </form>
-
-                    </div>
-
-                    <div>
-                        @ad.Ratings.Where(i => i.IsLiked == true).Count()
-                    </div>
-
-                    <div>
-                        <form method="post" action="~/Ads/DisLike">
-                            <input type="hidden" value="@ad.Id" name="adId" />
-                            <input type="submit" value="D" />
-                        </form>
-                    </div>
-
-                    <div>
-                        @ad.Ratings.Where(i => i.IsLiked == false).Count()
-                    </div>
-
-                </div>
-            </div>
-        }
+        </div>
 
     </div>
 
 </div>
-
-<script>
-
-    var buttonToOpenModal = document.getElementById("buttonToOpenModal");
-    var modalWindow = document.getElementById("modalWindow");
-    var buttonToClose = document.getElementById("buttonToClose");
-
-    buttonToOpenModal.onclick = function () {
-        modalWindow.style.display = "block";
-    }
-
-    buttonToClose.onclick = function () {
-        modalWindow.style.display = "none";
-    }
-
-</script>

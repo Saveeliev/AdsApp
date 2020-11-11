@@ -1,5 +1,6 @@
 ﻿using DataBase.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace DataBase
 {
@@ -24,6 +25,10 @@ namespace DataBase
             modelBuilder.Entity<AdDb>()
                 .Property(p => p.Number)
                 .ValueGeneratedOnAdd();
+
+            modelBuilder.Entity<AdDb>()
+                .Property(p => p.Number)
+                .Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
 
             modelBuilder.Entity<RatingDb>()
                 .HasOne(p => p.User)

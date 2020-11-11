@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
+using System.ComponentModel.DataAnnotations;
 
 namespace DTO
 {
@@ -11,8 +12,9 @@ namespace DTO
 
         public int Number { get; set; }
         public string Title { get; set; }
+        [DataType(DataType.MultilineText)]
         public string Text { get; set; }
-        public IFormFile Image { get; set; }
+        public string ImagePath { get; set; }
         public DateTime CreatedDate { get; set; }
         public Guid UserId { get; set; }
         public ICollection<RatingDb> Ratings { get; set; }

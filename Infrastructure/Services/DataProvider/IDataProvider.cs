@@ -11,7 +11,7 @@ namespace Infrastructure.Services.DataProvider
     {
         Task Insert<T>(T model) where T : class;
         Task Update<T>(T model) where T : class;
-        IQueryable<T> Get<T>(Expression<Func<T, bool>> predicate) where T : class;
+        IQueryable<T> Get<T>(Expression<Func<T, bool>> predicate = null) where T : class;
         Task Delete<T>(T model) where T : class;
         IDbContextTransaction CreateTransaction(IsolationLevel isolationLevel);
     }

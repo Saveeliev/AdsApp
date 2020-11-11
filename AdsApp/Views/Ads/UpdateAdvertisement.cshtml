@@ -9,29 +9,54 @@
 
     <div class="updateAdvertisementContainer">
 
-        <form method="post" action="~/Ads/UpdateAdvertisement">
+        <div>
 
-            <div>
+            <form method="post" action="~/Ads/UpdateAdvertisement" enctype="multipart/form-data">
 
                 <label class="title">Title <span class="validationLabel" asp-validation-for="Title"></span></label>
 
-                <input type="text" class="enterData enterTitle" asp-for="Title" name="adTitle" value="@ViewData["AdTitle"]" />
+                <input type="text" class="enterData enterTitle" name="Title" value="@Model.Title" />
 
                 <label class="title">Text <span class="validationLabel" asp-validation-for="Text"></span></label>
 
-                <textarea class="enterData enterText" name="adText">@ViewData["AdText"]</textarea>
+                <textarea class="enterData enterText" name="Text">@Model.Text</textarea>
 
-                <input type="hidden" name="adId" value="@ViewData["AdId"]" />
+                <div class="imagesContainer" id="imagesContainer">
+                    @if (Model.ImagePath != null)
+                    {
+                        <img src="@Url.Content("~/" + Model.ImagePath + "?width=180&height=120")" />
+                        <div class="removeImage">
+                            <button type="button" id="buttonToRemoveImage"><img src="@Url.Content("~/icons/close.png")" width="25" /></button>
+                        </div>
+                    }
+                    else
+                    {
+                        <input type="file" class="enterData" name="Image" />
+                    }
+                </div>
+
+                <input type="hidden" name="Id" value="@Model.Id" />
 
                 <div class="buttonsContainer">
                     <input type="submit" class="buttonToEnter" value="Enter" />
                     <a href="~/Ads/Index" class="buttonToCancel">Cancel</a>
                 </div>
 
-            </div>
+            </form>
 
-        </form>
+        </div>
 
     </div>
 
 </div>
+
+<script>
+
+    var imagesContainer = document.getElementById("imagesContainer");
+    var buttonToRemoveImage = document.getElementById("buttonToRemoveImage");
+
+    buttonToRemoveImage.onclick = function () {
+        imagesContainer.innerHTML = '<input type="file" class="enterData" name="Image" />';
+    };
+
+</script>

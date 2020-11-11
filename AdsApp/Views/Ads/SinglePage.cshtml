@@ -7,6 +7,13 @@
 
     <div class="singleContainer">
 
+        @if (!string.IsNullOrEmpty(Model.ImagePath))
+        {
+            <div class="image">
+                <img src="@Url.Content("~/" + Model.ImagePath + "?width=400&height=200")" />
+            </div>
+        }
+
         <div class="title">
             @Model.Title
         </div>

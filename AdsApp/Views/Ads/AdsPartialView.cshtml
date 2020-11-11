@@ -1,0 +1,108 @@
+﻿@using AdsApp.Extensions
+@model DTO.AdDto[]
+@{Guid userId = User.Claims.GetUserId();}
+
+@if (Model.Length == 0)
+{
+    <div>
+        No ads to show
+    </div>
+}
+else
+{
+
+    @foreach (var ad in Model)
+    {
+        <div class="ad">
+            <div class="imgContainer">
+
+                <form data-ajax="true" data-ajax-mode="replace" data-ajax-update="#result" id="form0" method="post" action="~/Ads/OpenImage">
+                    <input type="hidden" value="@Url.Content(ad.ImagePath)" name="adImagePath" />
+
+                    @if (!string.IsNullOrEmpty(ad.ImagePath))
+                    {
+                        <button class="openImageButton" type="submit"><img src="@Url.Content("~/" + ad.ImagePath + "?width=180&height=120")" /></button>
+                    }
+                    else
+                    {
+                        <img src="@Url.Content("~/icons/noPhoto.png")" width="180" />
+                    }
+
+                </form>
+
+            </div>
+            <div class="titleContainer">
+
+                <form method="get" action="~/Ads/SinglePage">
+                    <input type="hidden" value="@ad.Id" name="adId" />
+                    <input type="submit" value="@ad.Title" />
+                </form>
+
+            </div>
+            <div class="adButtonsContainer">
+
+                @if (ad.UserId == userId)
+                {
+                    <div>
+
+                        <form method="get" action="~/Ads/UpdateAdvertisement">
+                            <input type="hidden" value="@ad.Id" name="adId" />
+                            <button type="submit"><img src="@Url.Content("~/icons/update.png")" /></button>
+                        </form>
+
+                    </div>
+
+                    <div>
+
+                        <form data-ajax="true" data-ajax-mode="replace" data-ajax-update="#result" id="form0" method="post" action="~/Ads/OpenWindowToDelete">
+                            <input type="hidden" value="@ad.Id" name="adId" />
+                            <button type="submit" id="buttonToDelete"><img src="@Url.Content("~/icons/delete.png")" /></button>
+                        </form>
+
+                    </div>
+                }
+
+            </div>
+
+            <div class="descriptionContainer">
+                @ad.Text;
+            </div>
+
+            <div class="userNameContainer">
+                @ad.UserName
+            </div>
+
+            <div class="dataContainer">
+                @ad.CreatedDate.ToString("M")
+            </div>
+
+            <div class="ratingContainer">
+
+                <div>
+
+                    <form method="post" action="~/Ads/Like">
+                        <input type="hidden" value="@ad.Id" name="adId" />
+                        <button type="submit"><img src="@Url.Content("~/icons/like.png")" /></button>
+                    </form>
+
+                </div>
+
+                <div>
+                    @ad.Ratings.Where(i => i.IsLiked == true).Count()
+                </div>
+
+                <div>
+                    <form method="post" action="~/Ads/DisLike">
+                        <input type="hidden" value="@ad.Id" name="adId" />
+                        <button type="submit"><img src="@Url.Content("~/icons/dislike.png")" /></button>
+                    </form>
+                </div>
+
+                <div>
+                    @ad.Ratings.Where(i => i.IsLiked == false).Count()
+                </div>
+
+            </div>
+        </div>
+    }
+}

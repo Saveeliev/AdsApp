@@ -1,0 +1,45 @@
+﻿<form method="get" action="~/Ads/Index">
+
+    <div class="searchContainer">
+
+        <div>
+            <input type="text" placeholder="Search" name="SearchText" />
+        </div>
+
+        <div>
+            <input type="date" name="SearchDate" />
+        </div>
+
+        <div>
+            Rating
+            <select size="1" name="SortRating">
+                <option value="null" selected></option>
+                <option value="false">Descending</option>
+                <option value="true">Ascending</option>
+            </select>
+        </div>
+
+        <div>
+            Date
+            <select size="1" name="SortDate">
+                <option value="null" selected></option>
+                <option value="false">Descending</option>
+                <option value="true">Ascending</option>
+            </select>
+        </div>
+
+        <div>
+            Number
+            <select size="1" name="SortNumber">
+                <option value="null" selected></option>
+                <option value="false">Descending</option>
+                <option value="true">Ascending</option>
+            </select>
+        </div>
+
+        <div>
+            <button class="buttonToEnter" type="submit">Enter</button>
+        </div>
+
+    </div>
+</form>

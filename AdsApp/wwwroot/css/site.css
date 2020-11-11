@@ -1,5 +1,6 @@
 ﻿body {
     background-color: white;
+    margin: 0;
 }
 
 * {
@@ -61,14 +62,14 @@
         line-height: 10px;
     }
 
-.userInterfaceContainer {
+.adsContainer {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     width: 100%;
     padding: 20px;
-    padding-top: 100px;
+    padding-top: 50px;
 }
 
 .logOutForm .enter {
@@ -95,6 +96,8 @@
 }
 
 #modalWindow {
+    display: flex;
+    justify-content: center;
     position: fixed;
     font-family: Arial, Helvetica, sans-serif;
     top: 0;
@@ -106,11 +109,13 @@
     -webkit-transition: opacity 400ms ease-in;
     -moz-transition: opacity 400ms ease-in;
     transition: opacity 400ms ease-in;
-    display: none;
 }
 
 .modalWindow {
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     position: relative;
     margin-top: 10%;
     width: 600px;
@@ -120,13 +125,37 @@
 
     .modalWindow .buttontoCloseContainer {
         position: absolute;
-        top: 5px;
+        top: 10px;
         right: 10px;
     }
 
         .modalWindow .buttontoCloseContainer img {
             width: 25px;
+            background-color: rgba(255,255,255, 0.6);
         }
+
+    .modalWindow .modalMessage {
+        width: 100%;
+        text-align: center;
+    }
+
+.openImageButton {
+    border: 0;
+    outline: 0;
+    padding: 0;
+}
+
+    .openImageButton:active {
+        border: 0;
+        outline: 0;
+        padding: 0;
+    }
+
+    .openImageButton:focus {
+        border: 0;
+        outline: 0;
+        padding: 0;
+    }
 
 .validationLabel {
     color: red;
@@ -163,13 +192,41 @@
         background: #CCCCCC;
     }
 
+    .buttonToEnter:active {
+        border: 0px;
+        outline: none;
+    }
+
+    .buttonToEnter:focus {
+        border: 0px;
+        outline: none;
+    }
+
 .buttonToCancel {
     display: block;
     margin-top: auto;
     margin-bottom: auto;
     margin-left: 20px;
     font-size: 15px;
+    border: 0;
+    color: cornflowerblue;
 }
+
+    .buttonToCancel:hover {
+        display: block;
+        margin-top: auto;
+        margin-bottom: auto;
+        margin-left: 20px;
+        font-size: 15px;
+        border: 0;
+        text-decoration: underline;
+        color: blue;
+    }
+
+    .buttonToCancel:active {
+        border: 0px;
+        outline: none;
+    }
 
 .errorMessage {
     color: red;
@@ -225,24 +282,25 @@
 
 .ad {
     display: grid;
-    width: 450px;
+    width: 550px;
+    height: 100px;
     grid-template-columns: repeat(4, 1fr);
-    grid-gap: 10px;
+    grid-gap: 0px;
     margin-bottom: 40px;
     background-color: white;
 }
 
     .ad .imgContainer {
-        grid-row: 1 / 3;
+        grid-row: 1 / 4;
         grid-column: 1 / 2;
         background-color: #EEEEEE;
-        width: 150px;
     }
 
     .ad .titleContainer {
         grid-row: 1 / 2;
         grid-column: 2 / 4;
         padding-top: 10px;
+        padding-left: 25px;
     }
 
         .ad .titleContainer input {
@@ -256,19 +314,19 @@
             font-size: 17px;
         }
 
-        .ad .titleContainer input:hover {
-            text-decoration: underline;
-        }
+            .ad .titleContainer input:hover {
+                text-decoration: underline;
+            }
 
-        .ad .titleContainer input:active {
-            border: 0;
-            outline: none;
-        }
+            .ad .titleContainer input:active {
+                border: 0;
+                outline: none;
+            }
 
-        .ad .titleContainer input:focus {
-            border: 0;
-            outline: none;
-        }
+            .ad .titleContainer input:focus {
+                border: 0;
+                outline: none;
+            }
 
     .ad .adButtonsContainer {
         grid-row: 1 / 2;
@@ -281,22 +339,44 @@
             margin-right: 10px;
         }
 
-    .ad .userNameContainer {
+        .ad .adButtonsContainer img {
+            width: 20px;
+        }
+
+        .ad .adButtonsContainer button {
+            border: 0;
+            outline: 0;
+            background: white;
+        }
+
+    .ad .descriptionContainer {
         grid-row: 2 / 3;
+        grid-column: 2 / 4;
+        white-space: nowrap;
+        overflow: hidden;
+        padding-left: 25px;
+        font-size: 14px;
+        padding-bottom: 10px;
+        text-overflow: ellipsis;
+    }
+
+    .ad .userNameContainer {
+        grid-row: 3 / 4;
         grid-column: 2 / 3;
         padding-top: 10px;
         font-size: 14px;
+        padding-left: 25px;
     }
 
     .ad .dataContainer {
-        grid-row: 2 / 3;
+        grid-row: 3 / 4;
         grid-column: 3 / 4;
         padding-top: 10px;
         font-size: 14px;
     }
 
     .ad .ratingContainer {
-        grid-row: 2 / 3;
+        grid-row: 3 / 4;
         grid-column: 4 / 5;
         display: flex;
         padding: 10px;
@@ -306,6 +386,16 @@
         .ad .ratingContainer div {
             margin-right: 10px;
             font-size: 14px;
+        }
+
+        .ad .ratingContainer img {
+            width: 20px;
+        }
+
+        .ad .ratingContainer button {
+            border: 0;
+            outline: 0;
+            background: white;
         }
 
 .addAdvertisementContainer {
@@ -362,18 +452,159 @@
         margin-top: 20px;
     }
 
+    .updateAdvertisementContainer .imagesContainer {
+        background: #e5e5e5;
+        margin-top: 30px;
+        position: relative;
+        width: 180px;
+    }
+
+    .updateAdvertisementContainer #buttonToRemoveImage {
+        border: 0;
+        outline: 0;
+        background: rgba(255,255,255, 0.8);
+        padding: 2px;
+    }
+
+    .updateAdvertisementContainer #buttonToRemoveImage:active {
+        border: 0;
+        outline: 0;
+    }
+
+    .updateAdvertisementContainer .removeImage {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+
 .singleContainer {
     width: 800px;
     display: flex;
     justify-content: center;
-    align-items:flex-start;
+    align-items: flex-start;
     flex-direction: column;
 }
 
-.singleContainer div {
-    margin-top: 20px;
-}
+    .singleContainer div {
+        margin-top: 20px;
+    }
 
     .singleContainer .title {
         font-size: 25px;
     }
+
+.searchContainer {
+    background: #eeeeee;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+    .searchContainer div {
+        margin-right: 15px;
+    }
+
+    .searchContainer input {
+        border: 0;
+        outline: 0;
+    }
+
+    .searchContainer select {
+        border: 0;
+        outline: 0;
+    }
+
+.pagination a {
+    display: inline-block;
+    margin-right: 8px;
+    border: 0;
+    outline: 0;
+    background-color: #EEEEEE;
+    font-size: 18px;
+    padding: 3px 8px 3px 8px;
+    color: black;
+}
+
+.pagination {
+    margin-top: 20px;
+}
+
+    .pagination a:hover {
+        text-decoration: none;
+    }
+
+    .pagination .currentPage {
+        background-color: white;
+        color: black;
+    }
+
+.footer {
+    height: 100px;
+    background-color: #303030;
+    margin-top: 30px;
+}
+
+/* Popup container */
+.popup {
+    position: relative;
+    display: fixed;
+    cursor: pointer;
+}
+
+    /* The actual popup (appears on top) */
+    .popup .popuptext {
+        visibility: hidden;
+        background-color: #555;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 15px;
+        position: absolute;
+        z-index: 1;
+        bottom: 125%;
+        left: 50%;
+        margin-left: -80px;
+    }
+
+        /* Popup arrow */
+        .popup .popuptext::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #555 transparent transparent transparent;
+        }
+
+    /* Toggle this class when clicking on the popup container (hide and show the popup) */
+    .popup .show {
+        visibility: visible;
+        -webkit-animation: fadeIn 1s;
+        animation: fadeIn 1s;
+    }
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
