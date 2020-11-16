@@ -2,9 +2,11 @@
 using DataBase.Models;
 using DTO.ActionResult;
 using DTO.Request;
+using Infrastructure.Helpers.TokenHelper;
 using Infrastructure.Options;
 using Infrastructure.Services.DataProvider;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -19,10 +21,12 @@ namespace Infrastructure.Services.UserService
     public class UserService : IUserService
     {
         private readonly IDataProvider _dataProvider;
+        private readonly ITokenHelper _tokenHelper;
 
-        public UserService(IDataProvider dataProvider)
+        public UserService(IDataProvider dataProvider, ITokenHelper tokenHelper)
         {
             _dataProvider = dataProvider ?? throw new ArgumentNullException(nameof(dataProvider));
+            _tokenHelper = tokenHelper ?? throw new ArgumentNullException(nameof(tokenHelper));
         }
 
         public async Task Register(RegisterRequest request)
@@ -34,7 +38,9 @@ namespace Infrastructure.Services.UserService
 
             using var transaction = _dataProvider.CreateTransaction(IsolationLevel.Serializable);
 
-            var user = _dataProvider.Get<UserDb>(i => i.Login == request.Login.ToLower()).SingleOrDefault();
+            var lowerLogin = request.Login.ToLower();
+
+            var user = _dataProvider.Get<UserDb>(i => i.Login == lowerLogin).SingleOrDefault();
            
             if (user != null)
                 throw new Exception("User is already exist");
@@ -43,7 +49,7 @@ namespace Infrastructure.Services.UserService
 
             var userDb = new UserDb
             {
-                Login = request.Login.ToLower(),
+                Login = lowerLogin,
                 Name = request.Name,
                 Password = hash
             };
@@ -60,9 +66,9 @@ namespace Infrastructure.Services.UserService
                 throw new ArgumentNullException(nameof(request));
             }
 
-            var loginLower = request.Login.ToLower();
+            var lowerLogin = request.Login.ToLower();
 
-            var user = _dataProvider.Get<UserDb>(i => i.Login == loginLower).SingleOrDefault();
+            var user = _dataProvider.Get<UserDb>(i => i.Login == lowerLogin).SingleOrDefault();
 
             if (user == null)
                 return null;
@@ -72,40 +78,9 @@ namespace Infrastructure.Services.UserService
             if (!varify)
                 return null;
 
-            var token = Token(user.Id);
+            var token = _tokenHelper.GenerateToken(user.Id);
 
             return new LoginResult { Token = token };
-        }
-
-        private string Token(Guid userId)
-        {
-            var identity = GetIdentity(userId);
-
-            var now = DateTime.UtcNow;
-
-            var jwt = new JwtSecurityToken(
-                    issuer: AuthOptions.ISSUER,
-                    audience: AuthOptions.AUDIENCE,
-                    notBefore: now,
-                    claims: identity.Claims,
-                    expires: now.Add(TimeSpan.FromMinutes(AuthOptions.LIFETIME)),
-                    signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
-
-            var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
-
-            return encodedJwt;
-        }
-
-        private ClaimsIdentity GetIdentity(Guid userId)
-        {
-            var claims = new List<Claim>
-                {
-                    new Claim(ClaimsIdentity.DefaultNameClaimType, userId.ToString())
-                };
-
-            ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, "Token", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
-
-            return claimsIdentity;
         }
     }
 }

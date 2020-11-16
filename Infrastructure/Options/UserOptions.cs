@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Infrastructure.Options
+﻿namespace Infrastructure.Options
 {
     public class UserOptions
     {
-        public const int AdCountLimit = 20;
-        public const int PageAdsCount = 3;
+        public int UserAdsCountLimit { get; set; }
+        public int PageItemsCountLimit { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using DTO;
+using DTO.ActionResult;
 using DTO.AdRequest;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,6 @@ namespace Infrastructure.Services.AdService
         Task DisLike(Guid adId, Guid userId);
         Task Delete(Guid adId, Guid userId);
         AdDto GetAd(Guid adId);
-        Task<AdDto[]> Search(SearchRequest request);
+        Task<SearchResult<AdDto>> Search(SearchRequest request, int currentPageNumber);
     }
 }

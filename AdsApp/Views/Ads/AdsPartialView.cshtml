@@ -1,4 +1,4 @@
-﻿@using AdsApp.Extensions
+﻿@using AdsApp.Infrastructure.Extensions
 @model DTO.AdDto[]
 @{Guid userId = User.Claims.GetUserId();}
 
@@ -33,7 +33,7 @@ else
             </div>
             <div class="titleContainer">
 
-                <form method="get" action="~/Ads/SinglePage">
+                <form method="get" action="~/Ads/AdSinglePage">
                     <input type="hidden" value="@ad.Id" name="adId" />
                     <input type="submit" value="@ad.Title" />
                 </form>

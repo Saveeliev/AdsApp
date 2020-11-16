@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DTO;
+using System;
 
 namespace AdsApp.Models
 {

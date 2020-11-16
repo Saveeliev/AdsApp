@@ -29,6 +29,11 @@ namespace AdsApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(RegisterRequest request)
         {
+            if (request is null)
+            {
+                throw new ArgumentNullException(nameof(request));
+            }
+
             if (!ModelState.IsValid)
                 return View();
 
@@ -49,6 +54,11 @@ namespace AdsApp.Controllers
         [HttpPost]
         public IActionResult Login(LoginRequest request)
         {
+            if (request is null)
+            {
+                throw new ArgumentNullException(nameof(request));
+            }
+
             if (!ModelState.IsValid)
                 return View();
 

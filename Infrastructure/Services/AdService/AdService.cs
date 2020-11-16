@@ -1,5 +1,6 @@
 ﻿using DataBase.Models;
 using DTO;
+using DTO.ActionResult;
 using DTO.AdRequest;
 using Infrastructure.Helpers;
 using Infrastructure.Options;
@@ -18,13 +19,20 @@ namespace Infrastructure.Services.AdService
     {
         private readonly IDataProvider _dataProvider;
         private readonly IImageHelper _imageHelper;
+        private readonly UserOptions _userOptions;
         private readonly StaticFilesOptions _options;
 
-        public AdService(IDataProvider dataProvider, IImageHelper imageHelper, IOptions<StaticFilesOptions> options)
+        public AdService(IDataProvider dataProvider, IImageHelper imageHelper, IOptions<StaticFilesOptions> filesOptions, IOptions<UserOptions> userOptions)
         {
+            if (filesOptions is null)
+            {
+                throw new ArgumentNullException(nameof(filesOptions));
+            }
+
             _dataProvider = dataProvider ?? throw new ArgumentNullException(nameof(dataProvider));
             _imageHelper = imageHelper ?? throw new ArgumentNullException(nameof(imageHelper));
-            _options = options.Value;
+            _userOptions = userOptions.Value;
+            _options = filesOptions.Value;
         }
 
         public async Task AddAdvertisement(AddAdvertisementRequest request, Guid userId)
@@ -36,15 +44,14 @@ namespace Infrastructure.Services.AdService
 
             using var transaction = _dataProvider.CreateTransaction(IsolationLevel.Serializable);
 
-            var ads = _dataProvider.Get<AdDb>(i => i.UserId == userId).ToList();
+            var adsCount = _dataProvider.Get<AdDb>(i => i.UserId == userId).Count();
 
-            if (ads.Count >= UserOptions.AdCountLimit)
+            if (adsCount >= _userOptions.UserAdsCountLimit)
             {
-                throw new Exception($"You cannot add more than {UserOptions.AdCountLimit} ads");
+                throw new Exception($"You cannot add more than {_userOptions.UserAdsCountLimit} ads");
             }
 
             string imagePath = null;
-
             if (request.Image != null)
             {
                 imagePath = _imageHelper.UploadImageAndGetName(request.Image).Result;
@@ -66,9 +73,9 @@ namespace Infrastructure.Services.AdService
 
         public async Task UpdateAdvertisement(AdvertisementRequest request, Guid userId)
         {
-            if (string.IsNullOrWhiteSpace(request.Text) || request.Title is null)
+            if (request is null)
             {
-                throw new ArgumentNullException();
+                throw new ArgumentNullException(nameof(request));
             }
 
             using var transaction = _dataProvider.CreateTransaction(IsolationLevel.RepeatableRead);
@@ -88,8 +95,6 @@ namespace Infrastructure.Services.AdService
             currentAd.Text = request.Text;
             currentAd.Title = request.Title;
 
-
-
             await _dataProvider.Update(currentAd);
 
             transaction.Commit();
@@ -105,7 +110,6 @@ namespace Infrastructure.Services.AdService
             {
                 var like = new RatingDb
                 {
-
                     AdId = adId,
                     UserId = userId,
                     IsLiked = true
@@ -204,8 +208,13 @@ namespace Infrastructure.Services.AdService
             return ad;
         }
 
-        public async Task<AdDto[]> Search(SearchRequest request)
+        public async Task<SearchResult<AdDto>> Search(SearchRequest request, int currentPageNumber)
         {
+            if (request is null)
+            {
+                throw new ArgumentNullException(nameof(request));
+            }
+
             var query = _dataProvider.Get<AdDb>();
 
             if (request.SearchDate.HasValue)
@@ -258,7 +267,11 @@ namespace Infrastructure.Services.AdService
                 }
             }
 
-            return await query.Select(i => new AdDto
+            using var transaction = _dataProvider.CreateTransaction(IsolationLevel.Serializable);
+
+            var adsCount = await query.CountAsync();
+
+            var ads = await query.Select(i => new AdDto
             {
                 Id = i.Id,
                 Text = i.Text,
@@ -268,7 +281,17 @@ namespace Infrastructure.Services.AdService
                 Ratings = i.Ratings,
                 UserName = i.User.Name,
                 ImagePath = i.ImagePath
-            }).ToArrayAsync();
+            }).Skip((currentPageNumber - 1) * _userOptions.PageItemsCountLimit).Take(_userOptions.PageItemsCountLimit).ToArrayAsync();
+
+            await transaction.CommitAsync();
+
+            var result = new SearchResult<AdDto>() 
+            { 
+                Items = ads,
+                TotalCount = adsCount
+            };
+
+            return result;
         }
     }
 }

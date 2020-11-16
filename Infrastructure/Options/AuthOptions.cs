@@ -5,10 +5,11 @@ namespace Infrastructure.Options
 {
     public class AuthOptions
     {
-        public const string ISSUER = "MyAuthServer";
-        public const string AUDIENCE = "MyAuthClient";
+        public string ISSUER { get; set; }
+        public string AUDIENCE { get; set; }
+        public int LIFETIME { get; set; }
+
         const string KEY = "EbUjCRoQxbdya3TS";
-        public const int LIFETIME = 1000;
         public static SymmetricSecurityKey GetSymmetricSecurityKey()
         {
             return new SymmetricSecurityKey(Encoding.ASCII.GetBytes(KEY));

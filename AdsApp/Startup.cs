@@ -6,6 +6,7 @@ using DTO.Request;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Infrastructure.Helpers;
+using Infrastructure.Helpers.TokenHelper;
 using Infrastructure.Options;
 using Infrastructure.Services.AdService;
 using Infrastructure.Services.DataProvider;
@@ -19,6 +20,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
 namespace AdsApp
@@ -35,9 +37,13 @@ namespace AdsApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<StaticFilesOptions>(Configuration.GetSection(nameof(StaticFilesOptions)));
+            services.Configure<AuthOptions>(Configuration.GetSection(nameof(AuthOptions)));
+            services.Configure<UserOptions>(Configuration.GetSection(nameof(UserOptions)));
             services.AddAutoMapper(typeof(Startup));
 
             string connection = Configuration.GetConnectionString("DefaultConnection");
+            var authOptions = new AuthOptions();
+            Configuration.Bind("AuthOptions", authOptions);
             services.AddDbContext<AdsAppContext>(options => options.UseSqlServer(connection));
             services.AddControllersWithViews();
             
@@ -49,9 +55,9 @@ namespace AdsApp
                 var tokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuer = true,
-                    ValidIssuer = AuthOptions.ISSUER,
+                    ValidIssuer = authOptions.ISSUER,
                     ValidateAudience = true,
-                    ValidAudience = AuthOptions.AUDIENCE,
+                    ValidAudience = authOptions.AUDIENCE,
                     ValidateLifetime = true,
                     IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(),
                     ValidateIssuerSigningKey = true
@@ -67,6 +73,7 @@ namespace AdsApp
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IAdService, AdService>();
             services.AddTransient<IImageHelper, ImageHelper>();
+            services.AddTransient<ITokenHelper, TokenHelper>();
             services.AddTransient<IValidator<RegisterRequest>, RegisterRequestValidator>();
             services.AddTransient<IValidator<LoginRequest>, LoginRequestValidator>();
             services.AddTransient<IValidator<AdvertisementRequest>, AdValidator>();

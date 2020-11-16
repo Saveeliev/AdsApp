@@ -13,7 +13,7 @@ namespace DataBase
         public AdsAppContext(DbContextOptions<AdsAppContext> options)
             : base(options)
         {
-            
+
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -31,13 +31,13 @@ namespace DataBase
                 .Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
 
             modelBuilder.Entity<RatingDb>()
-                .HasOne(p => p.User)
-                .WithMany(t => t.Ratings)
-                .OnDelete(DeleteBehavior.NoAction);
-
-            modelBuilder.Entity<RatingDb>()
                 .HasOne(p => p.Ad)
                 .WithMany(t => t.Ratings)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<AdDb>()
+                .HasOne(p => p.User)
+                .WithMany(t => t.Ads)
                 .OnDelete(DeleteBehavior.Cascade);
         }
     }

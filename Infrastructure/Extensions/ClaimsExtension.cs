@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 
-namespace AdsApp.Extensions
+namespace AdsApp.Infrastructure.Extensions
 {
     public static class ClaimsExtension
     {

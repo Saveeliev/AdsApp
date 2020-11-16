@@ -1,4 +1,4 @@
-﻿using AdsApp.Extensions;
+﻿using AdsApp.Infrastructure.Extensions;
 using AdsApp.Models;
 using DTO;
 using DTO.AdRequest;
@@ -6,9 +6,8 @@ using Infrastructure.Options;
 using Infrastructure.Services.AdService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace AdsApp.Controllers
@@ -17,24 +16,24 @@ namespace AdsApp.Controllers
     public class AdsController : Controller
     {
         private readonly IAdService _adService;
+        private readonly UserOptions _userOptions;
 
-        public AdsController(IAdService adService)
+        public AdsController(IAdService adService, IOptions<UserOptions> userOptions)
         {
             _adService = adService ?? throw new ArgumentNullException(nameof(adService));
+            _userOptions = userOptions.Value;
         }
 
         [HttpGet]
         public async Task<IActionResult> Index(SearchRequest request, int currentPageNumber = 1)
         {
-            var ads = await _adService.Search(request);
+            var searchResult = await _adService.Search(request, currentPageNumber);
 
             var indexViewModel = new IndexViewModel
             {
-                Ads = ads.Skip((currentPageNumber - 1) * UserOptions.PageAdsCount)
-                .Take(UserOptions.PageAdsCount)
-                .ToArray(),
+                Ads = searchResult.Items,
 
-                PageViewModel = new PageViewModel(ads.Length, currentPageNumber, UserOptions.PageAdsCount),
+                PageViewModel = new PageViewModel(searchResult.TotalCount, currentPageNumber, _userOptions.PageItemsCountLimit),
 
                 SearchRequest = request
             };
@@ -57,14 +56,17 @@ namespace AdsApp.Controllers
                 return RedirectToAction("Index");
             }
 
-            var request = new AdvertisementRequest { Id = ad.Id, Text = ad.Text, Title = ad.Title };
-
             return View(ad);
         }
 
         [HttpPost]
         public async Task<IActionResult> AddAdvertisement(AddAdvertisementRequest request)
         {
+            if (request is null)
+            {
+                throw new ArgumentNullException(nameof(request));
+            }
+
             if (!ModelState.IsValid)
                 return View();
 
@@ -76,12 +78,6 @@ namespace AdsApp.Controllers
             }
             catch (Exception ex)
             {
-                var AdAdvertisimentModal = new PartialModel
-                {
-                    PartialViewName = "AddAdvertisimentModalView",
-                    Model = ex.Message
-                };
-
                 ViewBag.Message = ex.Message;
                 return View();
             }
@@ -104,10 +100,30 @@ namespace AdsApp.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateAdvertisement(AdvertisementRequest request)
         {
+            if (request is null)
+            {
+                throw new ArgumentNullException(nameof(request));
+            }
+
             var ad = _adService.GetAd(request.Id);
 
             if (!ModelState.IsValid)
+            {
+                ad = new AdDto()
+                {
+                    Id = request.Id, 
+                    Title = request.Title, 
+                    Text = request.Text, 
+                    CreatedDate = ad.CreatedDate, 
+                    ImagePath = ad.ImagePath, 
+                    Number = ad.Number, 
+                    Ratings = ad.Ratings, 
+                    UserId = ad.UserId, 
+                    UserName = ad.UserName
+                };
+
                 return View(ad);
+            }
 
             try
             {
@@ -167,7 +183,7 @@ namespace AdsApp.Controllers
         }
 
         [HttpGet]
-        public IActionResult SinglePage(Guid adId)
+        public IActionResult AdSinglePage(Guid adId)
         {
             var ad = _adService.GetAd(adId);
 
