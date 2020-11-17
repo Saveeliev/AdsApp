@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using DataBase.Models;
 using DTO;
 using DTO.AdRequest;
 
@@ -8,7 +9,7 @@ namespace Infrastructure.Mapping
     {
         public AutoMapping()
         {
-            CreateMap<AdDto, AdvertisementRequest>();
+            CreateMap<AdDb, AdDto>();
         }
     }
 }

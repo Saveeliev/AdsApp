@@ -1,5 +1,6 @@
 ﻿using AdsApp.Infrastructure.Extensions;
 using AdsApp.Models;
+using AutoMapper;
 using DTO;
 using DTO.AdRequest;
 using Infrastructure.Options;
@@ -16,11 +17,13 @@ namespace AdsApp.Controllers
     public class AdsController : Controller
     {
         private readonly IAdService _adService;
+        private readonly IMapper _mapper;
         private readonly UserOptions _userOptions;
 
-        public AdsController(IAdService adService, IOptions<UserOptions> userOptions)
+        public AdsController(IAdService adService, IOptions<UserOptions> userOptions, IMapper mapper)
         {
             _adService = adService ?? throw new ArgumentNullException(nameof(adService));
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
             _userOptions = userOptions.Value;
         }
 
@@ -99,7 +102,8 @@ namespace AdsApp.Controllers
 
         [HttpPost]
         public async Task<IActionResult> UpdateAdvertisement(AdvertisementRequest request)
-        {
+        { 
+
             if (request is null)
             {
                 throw new ArgumentNullException(nameof(request));

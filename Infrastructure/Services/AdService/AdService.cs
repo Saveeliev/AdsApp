@@ -1,4 +1,6 @@
-﻿using DataBase.Models;
+﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using DataBase.Models;
 using DTO;
 using DTO.ActionResult;
 using DTO.AdRequest;
@@ -19,10 +21,11 @@ namespace Infrastructure.Services.AdService
     {
         private readonly IDataProvider _dataProvider;
         private readonly IImageHelper _imageHelper;
+        private readonly IMapper _mapper;
         private readonly UserOptions _userOptions;
         private readonly StaticFilesOptions _options;
 
-        public AdService(IDataProvider dataProvider, IImageHelper imageHelper, IOptions<StaticFilesOptions> filesOptions, IOptions<UserOptions> userOptions)
+        public AdService(IDataProvider dataProvider, IImageHelper imageHelper, IOptions<StaticFilesOptions> filesOptions, IOptions<UserOptions> userOptions, IMapper mapper)
         {
             if (filesOptions is null)
             {
@@ -31,6 +34,7 @@ namespace Infrastructure.Services.AdService
 
             _dataProvider = dataProvider ?? throw new ArgumentNullException(nameof(dataProvider));
             _imageHelper = imageHelper ?? throw new ArgumentNullException(nameof(imageHelper));
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
             _userOptions = userOptions.Value;
             _options = filesOptions.Value;
         }
@@ -192,18 +196,7 @@ namespace Infrastructure.Services.AdService
 
         public AdDto GetAd(Guid adId)
         {
-            var ad = _dataProvider.Get<AdDb>(i => i.Id == adId)
-                .Select(i => new AdDto
-                {
-                    Id = i.Id,
-                    Text = i.Text,
-                    Title = i.Title,
-                    CreatedDate = i.CreatedDate,
-                    UserId = i.UserId,
-                    Ratings = i.Ratings,
-                    UserName = i.User.Name,
-                    ImagePath = i.ImagePath
-                }).SingleOrDefault();
+            var ad = _dataProvider.Get<AdDb>(i => i.Id == adId).ProjectTo<AdDto>(_mapper.ConfigurationProvider).SingleOrDefault();
 
             return ad;
         }
@@ -271,17 +264,7 @@ namespace Infrastructure.Services.AdService
 
             var adsCount = await query.CountAsync();
 
-            var ads = await query.Select(i => new AdDto
-            {
-                Id = i.Id,
-                Text = i.Text,
-                Title = i.Title,
-                CreatedDate = i.CreatedDate,
-                UserId = i.UserId,
-                Ratings = i.Ratings,
-                UserName = i.User.Name,
-                ImagePath = i.ImagePath
-            }).Skip((currentPageNumber - 1) * _userOptions.PageItemsCountLimit).Take(_userOptions.PageItemsCountLimit).ToArrayAsync();
+            var ads = await query.ProjectTo<AdDto>(_mapper.ConfigurationProvider).Skip((currentPageNumber - 1) * _userOptions.PageItemsCountLimit).Take(_userOptions.PageItemsCountLimit).ToArrayAsync();
 
             await transaction.CommitAsync();
 

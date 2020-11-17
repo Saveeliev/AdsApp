@@ -7,6 +7,7 @@ using FluentValidation;
 using FluentValidation.AspNetCore;
 using Infrastructure.Helpers;
 using Infrastructure.Helpers.TokenHelper;
+using Infrastructure.Mapping;
 using Infrastructure.Options;
 using Infrastructure.Services.AdService;
 using Infrastructure.Services.DataProvider;
@@ -36,10 +37,12 @@ namespace AdsApp
 
         public void ConfigureServices(IServiceCollection services)
         {
+            var assembly = typeof(AutoMapping).Assembly;
+            services.AddAutoMapper(assembly);
+
             services.Configure<StaticFilesOptions>(Configuration.GetSection(nameof(StaticFilesOptions)));
             services.Configure<AuthOptions>(Configuration.GetSection(nameof(AuthOptions)));
             services.Configure<UserOptions>(Configuration.GetSection(nameof(UserOptions)));
-            services.AddAutoMapper(typeof(Startup));
 
             string connection = Configuration.GetConnectionString("DefaultConnection");
             var authOptions = new AuthOptions();
