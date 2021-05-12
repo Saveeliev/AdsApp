@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Church\\source\\repos\\AdsApp\\AdsApp\\AdsApp.csproj": {}
+    "D:\\repos\\AdsApp\\AdsApp\\AdsApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Church\\source\\repos\\AdsApp\\AdsApp\\AdsApp.csproj": {
+    "D:\\repos\\AdsApp\\AdsApp\\AdsApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Church\\source\\repos\\AdsApp\\AdsApp\\AdsApp.csproj",
+        "projectUniqueName": "D:\\repos\\AdsApp\\AdsApp\\AdsApp.csproj",
         "projectName": "AdsApp",
-        "projectPath": "C:\\Users\\Church\\source\\repos\\AdsApp\\AdsApp\\AdsApp.csproj",
-        "packagesPath": "C:\\Users\\Church\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Church\\source\\repos\\AdsApp\\AdsApp\\obj\\",
+        "projectPath": "D:\\repos\\AdsApp\\AdsApp\\AdsApp.csproj",
+        "packagesPath": "C:\\Users\\n.saveliev\\.nuget\\packages\\",
+        "outputPath": "D:\\repos\\AdsApp\\AdsApp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Church\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\n.saveliev\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,19 +22,21 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "http://192.168.8.109/nuget/": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\Church\\source\\repos\\AdsApp\\DataBase\\DataBase.csproj": {
-                "projectPath": "C:\\Users\\Church\\source\\repos\\AdsApp\\DataBase\\DataBase.csproj"
+              "D:\\repos\\AdsApp\\DataBase\\DataBase.csproj": {
+                "projectPath": "D:\\repos\\AdsApp\\DataBase\\DataBase.csproj"
               },
-              "C:\\Users\\Church\\source\\repos\\AdsApp\\DTO\\DTO.csproj": {
-                "projectPath": "C:\\Users\\Church\\source\\repos\\AdsApp\\DTO\\DTO.csproj"
+              "D:\\repos\\AdsApp\\DTO\\DTO.csproj": {
+                "projectPath": "D:\\repos\\AdsApp\\DTO\\DTO.csproj"
               },
-              "C:\\Users\\Church\\source\\repos\\AdsApp\\Infrastructure\\Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\Church\\source\\repos\\AdsApp\\Infrastructure\\Infrastructure.csproj"
+              "D:\\repos\\AdsApp\\Infrastructure\\Infrastructure.csproj": {
+                "projectPath": "D:\\repos\\AdsApp\\Infrastructure\\Infrastructure.csproj"
               }
             }
           }
@@ -47,6 +49,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
@@ -109,21 +112,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Church\\source\\repos\\AdsApp\\DataBase\\DataBase.csproj": {
+    "D:\\repos\\AdsApp\\DataBase\\DataBase.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Church\\source\\repos\\AdsApp\\DataBase\\DataBase.csproj",
+        "projectUniqueName": "D:\\repos\\AdsApp\\DataBase\\DataBase.csproj",
         "projectName": "DataBase",
-        "projectPath": "C:\\Users\\Church\\source\\repos\\AdsApp\\DataBase\\DataBase.csproj",
-        "packagesPath": "C:\\Users\\Church\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Church\\source\\repos\\AdsApp\\DataBase\\obj\\",
+        "projectPath": "D:\\repos\\AdsApp\\DataBase\\DataBase.csproj",
+        "packagesPath": "C:\\Users\\n.saveliev\\.nuget\\packages\\",
+        "outputPath": "D:\\repos\\AdsApp\\DataBase\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Church\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\n.saveliev\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -131,10 +134,12 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "http://192.168.8.109/nuget/": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netstandard2.0": {
+            "targetAlias": "netstandard2.0",
             "projectReferences": {}
           }
         },
@@ -146,6 +151,7 @@
       },
       "frameworks": {
         "netstandard2.0": {
+          "targetAlias": "netstandard2.0",
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
@@ -196,21 +202,21 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Church\\source\\repos\\AdsApp\\DTO\\DTO.csproj": {
+    "D:\\repos\\AdsApp\\DTO\\DTO.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Church\\source\\repos\\AdsApp\\DTO\\DTO.csproj",
+        "projectUniqueName": "D:\\repos\\AdsApp\\DTO\\DTO.csproj",
         "projectName": "DTO",
-        "projectPath": "C:\\Users\\Church\\source\\repos\\AdsApp\\DTO\\DTO.csproj",
-        "packagesPath": "C:\\Users\\Church\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Church\\source\\repos\\AdsApp\\DTO\\obj\\",
+        "projectPath": "D:\\repos\\AdsApp\\DTO\\DTO.csproj",
+        "packagesPath": "C:\\Users\\n.saveliev\\.nuget\\packages\\",
+        "outputPath": "D:\\repos\\AdsApp\\DTO\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Church\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\n.saveliev\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -218,13 +224,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "http://192.168.8.109/nuget/": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netstandard2.0": {
+            "targetAlias": "netstandard2.0",
             "projectReferences": {
-              "C:\\Users\\Church\\source\\repos\\AdsApp\\DataBase\\DataBase.csproj": {
-                "projectPath": "C:\\Users\\Church\\source\\repos\\AdsApp\\DataBase\\DataBase.csproj"
+              "D:\\repos\\AdsApp\\DataBase\\DataBase.csproj": {
+                "projectPath": "D:\\repos\\AdsApp\\DataBase\\DataBase.csproj"
               }
             }
           }
@@ -237,6 +245,7 @@
       },
       "frameworks": {
         "netstandard2.0": {
+          "targetAlias": "netstandard2.0",
           "dependencies": {
             "Microsoft.AspNetCore.Http": {
               "target": "Package",
@@ -259,21 +268,21 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Church\\source\\repos\\AdsApp\\Infrastructure\\Infrastructure.csproj": {
+    "D:\\repos\\AdsApp\\Infrastructure\\Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Church\\source\\repos\\AdsApp\\Infrastructure\\Infrastructure.csproj",
+        "projectUniqueName": "D:\\repos\\AdsApp\\Infrastructure\\Infrastructure.csproj",
         "projectName": "Infrastructure",
-        "projectPath": "C:\\Users\\Church\\source\\repos\\AdsApp\\Infrastructure\\Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\Church\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Church\\source\\repos\\AdsApp\\Infrastructure\\obj\\",
+        "projectPath": "D:\\repos\\AdsApp\\Infrastructure\\Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\n.saveliev\\.nuget\\packages\\",
+        "outputPath": "D:\\repos\\AdsApp\\Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Church\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\n.saveliev\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -281,13 +290,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "http://192.168.8.109/nuget/": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netstandard2.0": {
+            "targetAlias": "netstandard2.0",
             "projectReferences": {
-              "C:\\Users\\Church\\source\\repos\\AdsApp\\DTO\\DTO.csproj": {
-                "projectPath": "C:\\Users\\Church\\source\\repos\\AdsApp\\DTO\\DTO.csproj"
+              "D:\\repos\\AdsApp\\DTO\\DTO.csproj": {
+                "projectPath": "D:\\repos\\AdsApp\\DTO\\DTO.csproj"
               }
             }
           }
@@ -300,6 +311,7 @@
       },
       "frameworks": {
         "netstandard2.0": {
+          "targetAlias": "netstandard2.0",
           "dependencies": {
             "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
@@ -370,7 +382,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }
