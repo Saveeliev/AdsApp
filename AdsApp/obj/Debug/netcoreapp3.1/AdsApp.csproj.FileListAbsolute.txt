@@ -360,3 +360,7 @@ D:\repos\AdsApp\AdsApp\obj\Debug\netcoreapp3.1\AdsApp.csproj.CopyComplete
 D:\repos\AdsApp\AdsApp\obj\Debug\netcoreapp3.1\AdsApp.dll
 D:\repos\AdsApp\AdsApp\obj\Debug\netcoreapp3.1\AdsApp.pdb
 D:\repos\AdsApp\AdsApp\obj\Debug\netcoreapp3.1\AdsApp.genruntimeconfig.cache
+D:\repos\AdsApp\AdsApp\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Relational.Design.dll
+D:\repos\AdsApp\AdsApp\bin\Debug\netcoreapp3.1\Npgsql.dll
+D:\repos\AdsApp\AdsApp\bin\Debug\netcoreapp3.1\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+D:\repos\AdsApp\AdsApp\bin\Debug\netcoreapp3.1\Npgsql.EntityFrameworkCore.PostgreSQL.Design.dll
