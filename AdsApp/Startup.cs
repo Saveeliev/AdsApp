@@ -47,7 +47,7 @@ namespace AdsApp
             string connection = Configuration.GetConnectionString("DefaultConnection");
             var authOptions = new AuthOptions();
             Configuration.Bind("AuthOptions", authOptions);
-            services.AddDbContext<AdsAppContext>(options => options.UseSqlServer(connection));
+            services.AddDbContext<AdsAppContext>(options => options.UseNpgsql(connection));
             services.AddControllersWithViews();
             
             services.AddMvc().AddFluentValidation();
