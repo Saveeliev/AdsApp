@@ -17,7 +17,7 @@ namespace AdsApp.API.Controllers
         }
         
         [HttpGet]
-        public async Task<IActionResult> GetAds(SearchRequest request)
+        public async Task<IActionResult> Search(SearchRequest request)
         {
             var searchResult = await _adService.Search(request, 1);
             return new ObjectResult(searchResult);
